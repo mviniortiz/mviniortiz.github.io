@@ -1,9 +1,38 @@
 theme: jekyll-theme-cayman
-title: Markus Vinicius - Data Analyst Portfolio
-description: Showcasing data analysis projects and visualizations
+title: Markus Vinicius Ortiz - Data Analyst Portfolio
+description: Data Analyst Portfolio showcasing Business Intelligence projects
 remote_theme: pages-themes/cayman@v0.2.0
+baseurl: 
+url: 
+google_analytics: 
+permalink: /:title/
+production_url: https://mviniortiz.github.io/DataAnalystPortfolio
+owner:
+  name: Markus Vinicius Ortiz
 plugins:
   - jekyll-remote-theme
+  - jekyll-seo-tag
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+      social-share: true
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
+      show-avatar: true
 
 # Social media links
 author:

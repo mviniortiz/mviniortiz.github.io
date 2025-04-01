@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Markus Vinicius - Data Analyst Portfolio
+title: Markus Vinicius Ortiz - Data Analyst Portfolio
 description: A showcase of data analysis projects and skills
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
@@ -107,5 +107,5 @@ Here you can see all the projects that I created and worked on! Each project dem
 ---
 
 <footer>
-  <p>All rights reserved to Markus Vinicius &copy; 2025</p>
+  <p>All rights reserved to Markus Vinicius Ortiz &copy; 2025</p>
 </footer> 

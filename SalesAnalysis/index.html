@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Analysis Project - Markus Vinicius Ortiz Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: #dbeafe;
+        }
+        
+        /* Dark Theme - Darker version */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #1d4ed8;
+            --accent-color: #60a5fa;
+            --text-color: #f9fafb;
+            --text-light: #d1d5db;
+            --background-color: #0f172a;
+            --card-bg-color: #1e293b;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-color: #2563eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 4rem 0 3rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            opacity: 1;
+        }
+
+        /* Language Selector - Match Main Site */
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+        
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 160px;
+            transition: opacity 0.2s ease;
+        }
+        
+        .language-selector.active .lang-menu {
+            display: block;
+        }
+        
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s ease;
+        }
+        
+        .lang-option:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lang-option.active {
+            background-color: var(--hover-color);
+            font-weight: 500;
+        }
+        
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme Toggle - Match Main Site */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--accent-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .hero-content {
+            text-align: center;
+            padding-top: 2rem;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        main {
+            padding: 3rem 0;
+        }
+        
+        .project-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .project-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .project-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px var(--shadow-color);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-icon {
+            color: var(--accent-color);
+        }
+        
+        .project-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            margin-bottom: 3rem;
+        }
+        
+        .project-section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .summary-list {
+            margin-bottom: 2rem;
+        }
+        
+        .summary-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .summary-list li:before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Adjustments */
+        @media screen and (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <label class="toggle-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="lang-btn">
+            <span id="current-language">English</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="lang-menu">
+            <div class="lang-option active" data-lang="en">
+                <img src="https://flagcdn.com/w20/us.png" alt="English" class="flag-icon">
+                <span>English</span>
+            </div>
+            <div class="lang-option" data-lang="es">
+                <img src="https://flagcdn.com/w20/es.png" alt="Español" class="flag-icon">
+                <span>Español</span>
+            </div>
+            <div class="lang-option" data-lang="pt">
+                <img src="https://flagcdn.com/w20/br.png" alt="Português" class="flag-icon">
+                <span>Português</span>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="../" class="logo">Markus Vinicius Ortiz</a>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../#projects">Projects</a></li>
+                        <li><a href="mailto:mviniciusortiz48@gmail.com">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Sales Analysis: Case Project" data-es="Análisis de Ventas: Proyecto de Caso" data-pt="Análise de Vendas: Projeto de Caso">Sales Analysis: Case Project</h1>
+                <p class="hero-subtitle" data-en="Comprehensive sales analysis dashboard focusing on product performance and using the Pareto principle to identify key products" data-es="Panel completo de análisis de ventas que se centra en el rendimiento del producto y utiliza el principio de Pareto para identificar productos clave" data-pt="Dashboard abrangente de análise de vendas focado no desempenho do produto e usando o princípio de Pareto para identificar produtos-chave">Comprehensive sales analysis dashboard focusing on product performance and using the Pareto principle to identify key products</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="project-section">
+                <h2 class="section-title" data-en="Project Overview" data-es="Descripción General del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
+                <p data-en="This sales analysis dashboard was developed to provide comprehensive insights into product performance, revenue trends, and customer purchasing behavior. By applying the Pareto principle (80/20 rule), the dashboard identifies the vital few products that contribute the majority of revenue, allowing for focused inventory and marketing strategies."
+                   data-es="Este panel de análisis de ventas se desarrolló para proporcionar información completa sobre el rendimiento del producto, las tendencias de ingresos y el comportamiento de compra del cliente. Al aplicar el principio de Pareto (regla 80/20), el panel identifica los pocos productos vitales que contribuyen a la mayoría de los ingresos, lo que permite estrategias enfocadas de inventario y marketing."
+                   data-pt="Este dashboard de análise de vendas foi desenvolvido para fornecer insights abrangentes sobre o desempenho do produto, tendências de receita e comportamento de compra do cliente. Aplicando o princípio de Pareto (regra 80/20), o dashboard identifica os poucos produtos vitais que contribuem com a maioria da receita, permitindo estratégias focadas de inventário e marketing.">This sales analysis dashboard was developed to provide comprehensive insights into product performance, revenue trends, and customer purchasing behavior. By applying the Pareto principle (80/20 rule), the dashboard identifies the vital few products that contribute the majority of revenue, allowing for focused inventory and marketing strategies.</p>
+                
+                <div class="project-image-container">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=675&q=90" alt="Sales Analysis Dashboard" class="project-image">
+                </div>
+                
+                <div class="cta-container" style="text-align: center; margin: 2rem 0;">
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiMGVjNGM1YzItYmFmZi00ODM2LWFkZDMtN2QzMTdiZWM0M2U5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="cta-button" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
+                    </a>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Key Features" data-es="Características Principales" data-pt="Principais Características">Key Features</h2>
+                <div class="grid-2">
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-chart-line feature-icon"></i> <span data-en="Pareto Analysis" data-es="Análisis de Pareto" data-pt="Análise de Pareto">Pareto Analysis</span></h3>
+                        <p data-en="Implementation of the 80/20 rule to identify the top 20% of products that generate 80% of revenue, helping focus resources on high-value items." data-es="Implementación de la regla 80/20 para identificar el 20% superior de productos que generan el 80% de los ingresos, ayudando a enfocar recursos en artículos de alto valor." data-pt="Implementação da regra 80/20 para identificar os 20% superiores de produtos que geram 80% da receita, ajudando a concentrar recursos em itens de alto valor.">Implementation of the 80/20 rule to identify the top 20% of products that generate 80% of revenue, helping focus resources on high-value items.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-calendar-alt feature-icon"></i> <span data-en="Temporal Analysis" data-es="Análisis Temporal" data-pt="Análise Temporal">Temporal Analysis</span></h3>
+                        <p data-en="Multi-level time series analysis showing daily, weekly, monthly, and quarterly sales trends to identify seasonality and growth patterns." data-es="Análisis de series temporales de múltiples niveles que muestra tendencias de ventas diarias, semanales, mensuales y trimestrales para identificar la estacionalidad y los patrones de crecimiento." data-pt="Análise de séries temporais em vários níveis mostrando tendências de vendas diárias, semanais, mensais e trimestrais para identificar padrões de sazonalidade e crescimento.">Multi-level time series analysis showing daily, weekly, monthly, and quarterly sales trends to identify seasonality and growth patterns.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-tags feature-icon"></i> <span data-en="Product Category Analysis" data-es="Análisis de Categoría de Productos" data-pt="Análise de Categoria de Produtos">Product Category Analysis</span></h3>
+                        <p data-en="Detailed breakdown of sales performance by product categories and subcategories, highlighting the most profitable product lines." data-es="Desglose detallado del rendimiento de ventas por categorías y subcategorías de productos, destacando las líneas de productos más rentables." data-pt="Detalhamento do desempenho de vendas por categorias e subcategorias de produtos, destacando as linhas de produtos mais lucrativas.">Detailed breakdown of sales performance by product categories and subcategories, highlighting the most profitable product lines.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-users feature-icon"></i> <span data-en="Customer Segmentation" data-es="Segmentación de Clientes" data-pt="Segmentação de Clientes">Customer Segmentation</span></h3>
+                        <p data-en="Analysis of purchasing patterns across different customer segments, revealing key differences in product preferences and buying behavior." data-es="Análisis de patrones de compra en diferentes segmentos de clientes, revelando diferencias clave en las preferencias de productos y el comportamiento de compra." data-pt="Análise de padrões de compra em diferentes segmentos de clientes, revelando diferenças-chave nas preferências de produtos e comportamento de compra.">Analysis of purchasing patterns across different customer segments, revealing key differences in product preferences and buying behavior.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-map-marked-alt feature-icon"></i> <span data-en="Geographical Distribution" data-es="Distribución Geográfica" data-pt="Distribuição Geográfica">Geographical Distribution</span></h3>
+                        <p data-en="Geographic visualization of sales performance across regions, identifying high-performing and underperforming markets." data-es="Visualización geográfica del rendimiento de ventas en todas las regiones, identificando mercados de alto rendimiento y bajo rendimiento." data-pt="Visualização geográfica do desempenho de vendas em todas as regiões, identificando mercados de alto desempenho e com baixo desempenho.">Geographic visualization of sales performance across regions, identifying high-performing and underperforming markets.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-chart-pie feature-icon"></i> <span data-en="KPI Tracking" data-es="Seguimiento de KPI" data-pt="Acompanhamento de KPI">KPI Tracking</span></h3>
+                        <p data-en="Comprehensive set of key performance indicators including total revenue, units sold, average order value, and year-over-year growth." data-es="Conjunto integral de indicadores clave de rendimiento que incluyen ingresos totales, unidades vendidas, valor promedio del pedido y crecimiento interanual." data-pt="Conjunto abrangente de indicadores-chave de desempenho, incluindo receita total, unidades vendidas, valor médio do pedido e crescimento ano a ano.">Comprehensive set of key performance indicators including total revenue, units sold, average order value, and year-over-year growth.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-section">
+                <h2 class="section-title" data-en="Technical Details" data-es="Detalles Técnicos" data-pt="Detalhes Técnicos">Technical Details</h2>
+                <ul class="summary-list">
+                    <li data-en="<strong>Data Integration:</strong> Unified 9 different tables into a single fact table to enable complex measure creation and analysis."
+                        data-es="<strong>Integración de datos:</strong> Unificó 9 tablas diferentes en una única tabla de hechos para permitir la creación y el análisis de medidas complejas."
+                        data-pt="<strong>Integração de dados:</strong> Unificou 9 tabelas diferentes em uma única tabela de fatos para permitir a criação e análise de medidas complexas."><strong>Data Integration:</strong> Unified 9 different tables into a single fact table to enable complex measure creation and analysis.</li>
+                    <li data-en="<strong>Data Modeling:</strong> Implemented a star schema design with dimension tables for products, customers, time, and geography."
+                        data-es="<strong>Modelado de datos:</strong> Implementó un diseño de esquema en estrella con tablas de dimensiones para productos, clientes, tiempo y geografía."
+                        data-pt="<strong>Modelagem de dados:</strong> Implementou um design de esquema estrela com tabelas de dimensões para produtos, clientes, tempo e geografia."><strong>Data Modeling:</strong> Implemented a star schema design with dimension tables for products, customers, time, and geography.</li>
+                    <li data-en="<strong>Data Transformation:</strong> Used Python for advanced data cleaning, normalization, and feature engineering."
+                        data-es="<strong>Transformación de datos:</strong> Utilizó Python para limpieza avanzada de datos, normalización e ingeniería de características."
+                        data-pt="<strong>Transformação de dados:</strong> Usou Python para limpeza avançada de dados, normalização e engenharia de recursos."><strong>Data Transformation:</strong> Used Python for advanced data cleaning, normalization, and feature engineering.</li>
+                    <li data-en="<strong>Visualization:</strong> Created visually impactful graphics using a combination of Figma for design elements and Power BI for interactive dashboards."
+                        data-es="<strong>Visualización:</strong> Creó gráficos visualmente impactantes utilizando una combinación de Figma para elementos de diseño y Power BI para paneles interactivos."
+                        data-pt="<strong>Visualização:</strong> Criou gráficos visualmente impactantes usando uma combinação de Figma para elementos de design e Power BI para dashboards interativos."><strong>Visualization:</strong> Created visually impactful graphics using a combination of Figma for design elements and Power BI for interactive dashboards.</li>
+                    <li data-en="<strong>DAX Measures:</strong> Developed complex DAX formulas for Pareto analysis, rolling averages, and custom KPI calculations."
+                        data-es="<strong>Medidas DAX:</strong> Desarrolló fórmulas DAX complejas para análisis de Pareto, promedios móviles y cálculos de KPI personalizados."
+                        data-pt="<strong>Medidas DAX:</strong> Desenvolveu fórmulas DAX complexas para análise de Pareto, médias móveis e cálculos de KPI personalizados."><strong>DAX Measures:</strong> Developed complex DAX formulas for Pareto analysis, rolling averages, and custom KPI calculations.</li>
+                </ul>
+            </section>
+
+            <section class="project-section">
+                <h2 class="section-title" data-en="Business Impact" data-es="Impacto Empresarial" data-pt="Impacto nos Negócios">Business Impact</h2>
+                <ul class="summary-list">
+                    <li data-en="<strong>Inventory Optimization:</strong> Reduced inventory costs by 18% by focusing on high-value items identified through Pareto analysis."
+                        data-es="<strong>Optimización de inventario:</strong> Redujo los costos de inventario en un 18% al centrarse en artículos de alto valor identificados a través del análisis de Pareto."
+                        data-pt="<strong>Otimização de estoque:</strong> Reduziu os custos de estoque em 18% ao focar em itens de alto valor identificados por meio da análise de Pareto."><strong>Inventory Optimization:</strong> Reduced inventory costs by 18% by focusing on high-value items identified through Pareto analysis.</li>
+                    <li data-en="<strong>Marketing Efficiency:</strong> Improved marketing ROI by reallocating budget to focus on top-performing product categories."
+                        data-es="<strong>Eficiencia de marketing:</strong> Mejoró el ROI de marketing mediante la reasignación del presupuesto para centrarse en las categorías de productos de mejor rendimiento."
+                        data-pt="<strong>Eficiência de marketing:</strong> Melhorou o ROI de marketing redistribuindo o orçamento para focar nas categorias de produtos com melhor desempenho."><strong>Marketing Efficiency:</strong> Improved marketing ROI by reallocating budget to focus on top-performing product categories.</li>
+                    <li data-en="<strong>Revenue Growth:</strong> Contributed to a 12% increase in sales by identifying and capitalizing on cross-selling opportunities."
+                        data-es="<strong>Crecimiento de ingresos:</strong> Contribuyó a un aumento del 12% en las ventas al identificar y capitalizar las oportunidades de venta cruzada."
+                        data-pt="<strong>Crescimento de receita:</strong> Contribuiu para um aumento de 12% nas vendas ao identificar e capitalizar oportunidades de venda cruzada."><strong>Revenue Growth:</strong> Contributed to a 12% increase in sales by identifying and capitalizing on cross-selling opportunities.</li>
+                    <li data-en="<strong>Customer Insights:</strong> Enhanced customer segmentation strategies leading to more targeted product offerings and increased customer satisfaction."
+                        data-es="<strong>Información del cliente:</strong> Mejoró las estrategias de segmentación de clientes, lo que condujo a ofertas de productos más específicas y aumentó la satisfacción del cliente."
+                        data-pt="<strong>Insights de clientes:</strong> Aprimorou estratégias de segmentação de clientes, levando a ofertas de produtos mais direcionadas e aumento da satisfação do cliente."><strong>Customer Insights:</strong> Enhanced customer segmentation strategies leading to more targeted product offerings and increased customer satisfaction.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://wa.me/5548991696887" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <a href="mailto:mviniciusortiz48@gmail.com"><i class="far fa-envelope fa-lg"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Markus Vinicius Ortiz. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or use the system preference
+        const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Apply the saved theme or system preference
+        if (currentTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.checked = true;
+        } else {
+            document.body.removeAttribute('data-theme');
+            themeToggle.checked = false;
+        }
+        
+        // Toggle theme when the switch is clicked
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Language switcher functionality
+        const languageSelector = document.querySelector('.language-selector');
+        const langBtn = document.querySelector('.lang-btn');
+        const langMenu = document.querySelector('.lang-menu');
+        const langOptions = document.querySelectorAll('.lang-option');
+        const currentLanguageText = document.getElementById('current-language');
+        
+        // Get saved language preference or default to English
+        const currentLang = localStorage.getItem('language') || 'en';
+        
+        // Function to update all translatable elements
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (element.hasAttribute(`data-${lang}`)) {
+                    element.textContent = element.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Update the current language in the dropdown
+            currentLanguageText.textContent = lang === 'en' ? 'English' : lang === 'es' ? 'Español' : 'Português';
+            
+            // Update active class
+            langOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                }
+            });
+        }
+        
+        // Apply the saved language
+        updateLanguage(currentLang);
+        
+        // Toggle language menu
+        langBtn.addEventListener('click', function() {
+            languageSelector.classList.toggle('active');
+        });
+        
+        // Handle language selection
+        langOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const selectedLang = this.getAttribute('data-lang');
+                localStorage.setItem('language', selectedLang);
+                updateLanguage(selectedLang);
+                languageSelector.classList.remove('active');
+            });
+        });
+        
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!languageSelector.contains(event.target)) {
+                languageSelector.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 
