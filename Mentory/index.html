@@ -20,6 +20,20 @@
             --shadow-color: rgba(0, 0, 0, 0.05);
             --hover-color: #dbeafe;
         }
+        
+        /* Dark Theme - Darker version */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #1d4ed8;
+            --accent-color: #60a5fa;
+            --text-color: #f9fafb;
+            --text-light: #d1d5db;
+            --background-color: #0f172a;
+            --card-bg-color: #1e293b;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-color: #2563eb;
+        }
 
         * {
             margin: 0;
@@ -79,15 +93,32 @@
             opacity: 1;
         }
 
+        /* Language Selector - Match Main Site */
         .language-selector {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            display: flex;
-            gap: 0.5rem;
             z-index: 100;
         }
-
+        
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 160px;
+            transition: opacity 0.2s ease;
+        }
+        
+        .language-selector.active .lang-menu {
+            display: block;
+        }
+        
         .lang-btn {
             background-color: rgba(255, 255, 255, 0.2);
             border: none;
@@ -102,13 +133,133 @@
             align-items: center;
             gap: 0.3rem;
         }
-
-        .lang-btn:hover, .lang-btn.active {
-            background-color: rgba(255, 255, 255, 0.4);
+        
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s ease;
+        }
+        
+        .lang-option:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lang-option.active {
+            background-color: var(--hover-color);
+            font-weight: 500;
+        }
+        
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .lang-btn.active {
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        /* Theme Toggle - Match Main Site */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--accent-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-icon {
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Animated background elements */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.1;
+        }
+
+        .data-particle {
+            position: absolute;
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            animation: floatData 15s linear infinite;
+        }
+
+        @keyframes floatData {
+            0% {
+                transform: translateY(100%) translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100%) translateX(100%);
+                opacity: 0;
+            }
         }
 
         .hero-content {
@@ -137,11 +288,22 @@
             padding: 4rem 0;
         }
 
-        .project-image {
+        /* Dashboard iframe container */
+        .dashboard-container {
             width: 100%;
+            height: 650px;
             border-radius: 12px;
+            overflow: hidden;
             box-shadow: 0 8px 24px var(--shadow-color);
             margin-bottom: 3rem;
+            background-color: var(--card-bg-color);
+            position: relative;
+        }
+
+        .dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .section-title {
@@ -191,101 +353,6 @@
         .feature-icon {
             color: var(--accent-color);
             font-size: 1.5rem;
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .kpi-card {
-            background-color: var(--card-bg-color);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .kpi-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .kpi-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-description {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .section-content {
-            margin-bottom: 2rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .tech-tag {
-            background-color: var(--hover-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .view-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .view-link:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .challenges {
-            background-color: var(--card-bg-color);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            margin-bottom: 3rem;
-        }
-
-        .challenges ul {
-            padding-left: 1.5rem;
-        }
-
-        .challenges li {
-            margin-bottom: 0.8rem;
         }
 
         .back-link {
@@ -359,41 +426,9 @@
             .grid-2 {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Animated background elements */
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            opacity: 0.1;
-        }
-
-        .data-particle {
-            position: absolute;
-            color: white;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            animation: floatData 15s linear infinite;
-        }
-
-        @keyframes floatData {
-            0% {
-                transform: translateY(100%) translateX(-100%);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100%) translateX(100%);
-                opacity: 0;
+            
+            .dashboard-container {
+                height: 500px;
             }
         }
     </style>
@@ -404,11 +439,33 @@
             <!-- Data elements will be added by JavaScript -->
         </div>
         
-        <div class="language-selector">
-            <button class="lang-btn active" data-lang="en"><i class="fas fa-globe-americas"></i> EN</button>
-            <button class="lang-btn" data-lang="es"><i class="fas fa-globe-americas"></i> ES</button>
-            <button class="lang-btn" data-lang="pt"><i class="fas fa-globe-americas"></i> PT</button>
+        <div class="theme-toggle">
+            <span class="toggle-icon"><i class="fas fa-sun"></i></span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-icon"><i class="fas fa-moon"></i></span>
         </div>
+
+        <div class="language-selector">
+            <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> <span id="currentLang">English</span></button>
+            <div class="lang-menu">
+                <div class="lang-option" data-lang="en">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="English" class="flag-icon">
+                    <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="es">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español" class="flag-icon">
+                    <span>Español</span>
+                </div>
+                <div class="lang-option" data-lang="pt">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português" class="flag-icon">
+                    <span>Português</span>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="header-container">
                 <a href="../" class="logo">Markus Vinicius</a>
@@ -431,7 +488,10 @@
         <div class="container">
             <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
             
-            <img src="https://github.com/user-attachments/assets/9edcf81c-346d-4772-a786-60accd1711e9" alt="Mentory Dashboard" class="project-image">
+            <!-- Live Dashboard Embed instead of static image -->
+            <div class="dashboard-container">
+                <iframe class="dashboard-iframe" src="https://lookerstudio.google.com/embed/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" allowfullscreen></iframe>
+            </div>
             
             <section>
                 <h2 class="section-title" data-en="Project Overview" data-es="Descripción del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
@@ -462,70 +522,6 @@
                     </div>
                 </div>
             </section>
-
-            <section>
-                <h2 class="section-title" data-en="Key Performance Indicators" data-es="Indicadores Clave de Rendimiento" data-pt="Indicadores-Chave de Desempenho">Key Performance Indicators</h2>
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h3 class="kpi-title" data-en="Cost per Acquisition" data-es="Costo por Adquisición" data-pt="Custo por Aquisição">Cost per Acquisition</h3>
-                        <p class="kpi-description" data-en="Tracking the cost efficiency of ad spend across platforms with comparison to benchmarks" data-es="Seguimiento de la eficiencia de costos del gasto publicitario en todas las plataformas con comparación con los puntos de referencia" data-pt="Rastreamento da eficiência de custos dos gastos com anúncios em todas as plataformas com comparação com benchmarks">Tracking the cost efficiency of ad spend across platforms with comparison to benchmarks</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <h3 class="kpi-title" data-en="Click-Through Rate" data-es="Tasa de Clics" data-pt="Taxa de Cliques">Click-Through Rate</h3>
-                        <p class="kpi-description" data-en="Analyzing ad engagement and effectiveness with historical trend analysis" data-es="Análisis del engagement y la efectividad de los anuncios con análisis de tendencias históricas" data-pt="Análise do engajamento e eficácia dos anúncios com análise de tendências históricas">Analyzing ad engagement and effectiveness with historical trend analysis</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h3 class="kpi-title" data-en="Conversion Rate" data-es="Tasa de Conversión" data-pt="Taxa de Conversão">Conversion Rate</h3>
-                        <p class="kpi-description" data-en="Measuring the percentage of clicks that result in conversions with segmentation by platform" data-es="Medición del porcentaje de clics que resultan en conversiones con segmentación por plataforma" data-pt="Medição da porcentagem de cliques que resultam em conversões com segmentação por plataforma">Measuring the percentage of clicks that result in conversions with segmentation by platform</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <h3 class="kpi-title" data-en="Return on Ad Spend" data-es="Retorno de la Inversión Publicitaria" data-pt="Retorno sobre Investimento em Anúncios">Return on Ad Spend</h3>
-                        <p class="kpi-description" data-en="Calculating the revenue generated for every dollar spent on advertising" data-es="Cálculo de los ingresos generados por cada dólar gastado en publicidad" data-pt="Cálculo da receita gerada para cada real gasto em publicidade">Calculating the revenue generated for every dollar spent on advertising</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title" data-en="Technologies Used" data-es="Tecnologías Utilizadas" data-pt="Tecnologias Utilizadas">Technologies Used</h2>
-                <div class="section-content">
-                    <p data-en="The dashboard was developed using a combination of powerful data analysis and visualization tools:" data-es="El panel fue desarrollado utilizando una combinación de potentes herramientas de análisis y visualización de datos:" data-pt="O dashboard foi desenvolvido usando uma combinação de poderosas ferramentas de análise e visualização de dados:">The dashboard was developed using a combination of powerful data analysis and visualization tools:</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag"><i class="fas fa-chart-line"></i> Looker Studio</span>
-                        <span class="tech-tag"><i class="fas fa-table"></i> Google Sheets</span>
-                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tech-tag"><i class="fas fa-desktop"></i> API Integrations</span>
-                        <span class="tech-tag"><i class="fab fa-figma"></i> Figma</span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title" data-en="Business Impact" data-es="Impacto en el Negocio" data-pt="Impacto no Negócio">Business Impact</h2>
-                <div class="section-content">
-                    <p data-en="The Mentory marketing dashboard has transformed the company's advertising strategy:" data-es="El panel de marketing de Mentory ha transformado la estrategia publicitaria de la empresa:" data-pt="O dashboard de marketing da Mentory transformou a estratégia publicitária da empresa:">The Mentory marketing dashboard has transformed the company's advertising strategy:</p>
-                    <ul>
-                        <li data-en="Enabled the marketing team to make faster, data-driven decisions by providing real-time performance metrics" data-es="Permitió al equipo de marketing tomar decisiones más rápidas basadas en datos al proporcionar métricas de rendimiento en tiempo real" data-pt="Permitiu que a equipe de marketing tomasse decisões mais rápidas e baseadas em dados, fornecendo métricas de desempenho em tempo real">Enabled the marketing team to make faster, data-driven decisions by providing real-time performance metrics</li>
-                        <li data-en="Improved campaign ROI by 32% through better budget allocation based on performance insights" data-es="Mejoró el ROI de la campaña en un 32% mediante una mejor asignación del presupuesto basada en información sobre el rendimiento" data-pt="Melhorou o ROI da campanha em 32% por meio de melhor alocação de orçamento com base em insights de desempenho">Improved campaign ROI by 32% through better budget allocation based on performance insights</li>
-                        <li data-en="Increased conversion rates by identifying and optimizing underperforming ad creatives and targeting parameters" data-es="Aumentó las tasas de conversión al identificar y optimizar creatividades publicitarias y parámetros de segmentación con bajo rendimiento" data-pt="Aumentou as taxas de conversão identificando e otimizando criativos de anúncios e parâmetros de direcionamento com baixo desempenho">Increased conversion rates by identifying and optimizing underperforming ad creatives and targeting parameters</li>
-                        <li data-en="Reduced time spent on manual reporting by 85%, freeing up the team to focus on strategic planning" data-es="Redujo el tiempo dedicado a la generación manual de informes en un 85%, liberando al equipo para centrarse en la planificación estratégica" data-pt="Reduziu o tempo gasto com relatórios manuais em 85%, liberando a equipe para se concentrar no planejamento estratégico">Reduced time spent on manual reporting by 85%, freeing up the team to focus on strategic planning</li>
-                    </ul>
-                    <a href="https://lookerstudio.google.com/u/1/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" class="view-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
-                    </a>
-                </div>
-            </section>
         </div>
     </main>
 
@@ -544,34 +540,108 @@
         </div>
     </footer>
 
-    <!-- Add JavaScript for the language switcher and animated background -->
+    <!-- Add JavaScript for the language switcher, theme toggle and animated background -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all elements with language attributes
-            const langElements = document.querySelectorAll('[data-en]');
-            const langButtons = document.querySelectorAll('.lang-btn');
+            // ============ Language Selector - Improved ============
+            const langBtn = document.getElementById('langBtn');
+            const langSelector = document.querySelector('.language-selector');
+            const langOptions = document.querySelectorAll('.lang-option');
+            const currentLangText = document.getElementById('currentLang');
             
-            // Language switcher click handler
-            langButtons.forEach(button => {
-                button.addEventListener('click', function() {
+            // Make language menu stay open when clicking the button
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSelector.classList.toggle('active');
+            });
+            
+            // Close language menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!langSelector.contains(e.target)) {
+                    langSelector.classList.remove('active');
+                }
+            });
+            
+            // Check for saved language
+            const savedLang = localStorage.getItem('portfolio-lang') || 'en';
+            document.documentElement.lang = savedLang;
+            
+            // Get all elements with language attributes
+            const langElements = document.querySelectorAll('[data-en], [data-pt], [data-es]');
+            
+            // Set initial active language
+            langOptions.forEach(option => {
+                const lang = option.getAttribute('data-lang');
+                if (lang === savedLang) {
+                    option.classList.add('active');
+                    currentLangText.textContent = option.querySelector('span').textContent;
+                }
+            });
+            
+            // Update content based on saved language
+            updateLanguageContent(savedLang);
+            
+            // Language option click handler
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const lang = this.getAttribute('data-lang');
                     
-                    // Update active button
-                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    // Update active option
+                    langOptions.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Update content for all elements with language attributes
-                    langElements.forEach(el => {
-                        if (el.hasAttribute(`data-${lang}`)) {
-                            el.textContent = el.getAttribute(`data-${lang}`);
-                        }
-                    });
+                    // Update current language text
+                    currentLangText.textContent = this.querySelector('span').textContent;
+                    
+                    // Update all content
+                    updateLanguageContent(lang);
                     
                     // Update html lang attribute
                     document.documentElement.lang = lang;
+                    
+                    // Save language preference
+                    localStorage.setItem('portfolio-lang', lang);
+                    
+                    // Close the menu
+                    langSelector.classList.remove('active');
                 });
             });
             
+            // Function to update all language content
+            function updateLanguageContent(lang) {
+                langElements.forEach(el => {
+                    if (el.hasAttribute(`data-${lang}`)) {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                });
+            }
+            
+            // ============ Theme Toggle - Dark/Light ============
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.checked = false;
+            }
+            
+            // Theme toggle handler
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('portfolio-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('portfolio-theme', 'light');
+                }
+            });
+            
+            // ============ Animated Background ============
             // Create animated data elements in the background
             const animatedBg = document.getElementById('animatedBg');
             const dataWords = [

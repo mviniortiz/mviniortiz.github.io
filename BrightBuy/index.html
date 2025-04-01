@@ -20,6 +20,20 @@
             --shadow-color: rgba(0, 0, 0, 0.05);
             --hover-color: #dbeafe;
         }
+        
+        /* Dark Theme - Darker version */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #1d4ed8;
+            --accent-color: #60a5fa;
+            --text-color: #f9fafb;
+            --text-light: #d1d5db;
+            --background-color: #0f172a;
+            --card-bg-color: #1e293b;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-color: #2563eb;
+        }
 
         * {
             margin: 0;
@@ -45,6 +59,8 @@
             color: white;
             padding: 4rem 0 3rem;
             box-shadow: 0 4px 6px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
         }
         
         .header-container {
@@ -77,6 +93,175 @@
             opacity: 1;
         }
 
+        /* Language Selector - Match Main Site */
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+        
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 160px;
+            transition: opacity 0.2s ease;
+        }
+        
+        .language-selector.active .lang-menu {
+            display: block;
+        }
+        
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s ease;
+        }
+        
+        .lang-option:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lang-option.active {
+            background-color: var(--hover-color);
+            font-weight: 500;
+        }
+        
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme Toggle - Match Main Site */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--accent-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-icon {
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Animated background elements */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.1;
+        }
+
+        .data-particle {
+            position: absolute;
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            animation: floatData 15s linear infinite;
+        }
+
+        @keyframes floatData {
+            0% {
+                transform: translateY(100%) translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100%) translateX(100%);
+                opacity: 0;
+            }
+        }
+
         .hero-content {
             margin-top: 3rem;
             text-align: center;
@@ -103,11 +288,22 @@
             padding: 4rem 0;
         }
 
-        .project-image {
+        /* Dashboard iframe container */
+        .dashboard-container {
             width: 100%;
+            height: 650px;
             border-radius: 12px;
+            overflow: hidden;
             box-shadow: 0 8px 24px var(--shadow-color);
             margin-bottom: 3rem;
+            background-color: var(--card-bg-color);
+            position: relative;
+        }
+
+        .dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         .section-title {
@@ -157,101 +353,6 @@
         .feature-icon {
             color: var(--accent-color);
             font-size: 1.5rem;
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .kpi-card {
-            background-color: var(--card-bg-color);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .kpi-icon {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .kpi-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-description {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .section-content {
-            margin-bottom: 2rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .tech-tag {
-            background-color: var(--hover-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .view-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .view-link:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .challenges {
-            background-color: var(--card-bg-color);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            margin-bottom: 3rem;
-        }
-
-        .challenges ul {
-            padding-left: 1.5rem;
-        }
-
-        .challenges li {
-            margin-bottom: 0.8rem;
         }
 
         .back-link {
@@ -325,11 +426,46 @@
             .grid-2 {
                 grid-template-columns: 1fr;
             }
+            
+            .dashboard-container {
+                height: 500px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
+        <div class="animated-bg" id="animatedBg">
+            <!-- Data elements will be added by JavaScript -->
+        </div>
+        
+        <div class="theme-toggle">
+            <span class="toggle-icon"><i class="fas fa-sun"></i></span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-icon"><i class="fas fa-moon"></i></span>
+        </div>
+
+        <div class="language-selector">
+            <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> <span id="currentLang">English</span></button>
+            <div class="lang-menu">
+                <div class="lang-option" data-lang="en">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="English" class="flag-icon">
+                    <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="es">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español" class="flag-icon">
+                    <span>Español</span>
+                </div>
+                <div class="lang-option" data-lang="pt">
+                    <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português" class="flag-icon">
+                    <span>Português</span>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="header-container">
                 <a href="../" class="logo">Markus Vinicius</a>
@@ -342,152 +478,48 @@
                 </nav>
             </div>
             <div class="hero-content">
-                <h1 class="hero-title">BrightBuy Dashboard Project</h1>
-                <p class="hero-subtitle">An interactive sales performance dashboard providing actionable insights for strategic decision-making</p>
+                <h1 class="hero-title" data-en="Business Intelligence Project: BrightBuy" data-es="Proyecto de Inteligencia Empresarial: BrightBuy" data-pt="Projeto de Business Intelligence: BrightBuy">Business Intelligence Project: BrightBuy</h1>
+                <p class="hero-subtitle" data-en="Interactive sales performance dashboard analyzing key business metrics including revenue, profit margins, customer segmentation, and vendor performance" data-es="Panel interactivo de rendimiento de ventas que analiza métricas comerciales clave, incluidos ingresos, márgenes de beneficio, segmentación de clientes y rendimiento de proveedores" data-pt="Dashboard interativo de desempenho de vendas que analisa métricas-chave de negócios, incluindo receita, margens de lucro, segmentação de clientes e desempenho de fornecedores">Interactive sales performance dashboard analyzing key business metrics including revenue, profit margins, customer segmentation, and vendor performance</p>
             </div>
         </div>
     </header>
 
     <main class="project-details">
         <div class="container">
-            <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
             
-            <img src="https://github.com/user-attachments/assets/9d64abc1-055b-45a6-9a2e-23468a52bd4e" alt="BrightBuy Dashboard" class="project-image">
+            <!-- Live Dashboard Embed instead of static image -->
+            <div class="dashboard-container">
+                <iframe class="dashboard-iframe" src="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" allowfullscreen></iframe>
+            </div>
             
             <section>
-                <h2 class="section-title">Project Overview</h2>
+                <h2 class="section-title" data-en="Project Overview" data-es="Descripción del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
                 <div class="section-content">
-                    <p>This project focused on developing an interactive sales performance dashboard for BrightBuy, a retail company looking to leverage their sales data for better business decisions. The dashboard provides a comprehensive view of key business metrics such as total revenue, profit margins, customer segmentation, and vendor performance.</p>
-                    <p>The goal was to create a powerful tool that enables stakeholders to identify trends, spot opportunities, and make data-driven decisions to improve business performance.</p>
+                    <p data-en="This project focused on developing a comprehensive business intelligence dashboard for BrightBuy, a retail company looking to gain deeper insights into their sales performance across multiple product categories and vendors." data-es="Este proyecto se centró en desarrollar un panel integral de inteligencia empresarial para BrightBuy, una empresa minorista que busca obtener información más profunda sobre su rendimiento de ventas en múltiples categorías de productos y proveedores." data-pt="Este projeto focou no desenvolvimento de um dashboard abrangente de business intelligence para a BrightBuy, uma empresa de varejo que busca obter insights mais profundos sobre seu desempenho de vendas em várias categorias de produtos e fornecedores.">This project focused on developing a comprehensive business intelligence dashboard for BrightBuy, a retail company looking to gain deeper insights into their sales performance across multiple product categories and vendors.</p>
+                    <p data-en="The goal was to create an intuitive, interactive dashboard that would allow stakeholders to analyze revenue trends, identify high-performing products, optimize inventory management, and make data-driven decisions to improve overall business performance." data-es="El objetivo era crear un panel intuitivo e interactivo que permitiera a las partes interesadas analizar tendencias de ingresos, identificar productos de alto rendimiento, optimizar la gestión de inventario y tomar decisiones basadas en datos para mejorar el rendimiento general del negocio." data-pt="O objetivo era criar um dashboard intuitivo e interativo que permitisse às partes interessadas analisar tendências de receita, identificar produtos de alto desempenho, otimizar o gerenciamento de estoque e tomar decisões baseadas em dados para melhorar o desempenho geral do negócio.">The goal was to create an intuitive, interactive dashboard that would allow stakeholders to analyze revenue trends, identify high-performing products, optimize inventory management, and make data-driven decisions to improve overall business performance.</p>
                 </div>
             </section>
 
             <section>
-                <h2 class="section-title">Key Features</h2>
+                <h2 class="section-title" data-en="Key Features" data-es="Características Principales" data-pt="Principais Recursos">Key Features</h2>
                 <div class="grid-2">
                     <div class="feature">
-                        <h3 class="feature-title"><i class="fas fa-chart-line feature-icon"></i> Sales Performance Analytics</h3>
-                        <p>Comprehensive analysis of sales data across different time periods (yearly, quarterly, monthly) with trend identification and comparison capabilities.</p>
+                        <h3 class="feature-title"><i class="fas fa-chart-line feature-icon"></i> <span data-en="Multi-dimensional Analysis" data-es="Análisis Multidimensional" data-pt="Análise Multidimensional">Multi-dimensional Analysis</span></h3>
+                        <p data-en="Comprehensive view of sales data from multiple perspectives including time periods, product categories, customer segments, and geographical regions." data-es="Vista integral de datos de ventas desde múltiples perspectivas, incluidos períodos de tiempo, categorías de productos, segmentos de clientes y regiones geográficas." data-pt="Visão abrangente dos dados de vendas a partir de múltiplas perspectivas, incluindo períodos de tempo, categorias de produtos, segmentos de clientes e regiões geográficas.">Comprehensive view of sales data from multiple perspectives including time periods, product categories, customer segments, and geographical regions.</p>
                     </div>
                     <div class="feature">
-                        <h3 class="feature-title"><i class="fas fa-users feature-icon"></i> Customer Segmentation</h3>
-                        <p>Detailed breakdown of customer segments based on purchasing behavior, demographics, and value, enabling targeted marketing and personalized customer experiences.</p>
+                        <h3 class="feature-title"><i class="fas fa-filter feature-icon"></i> <span data-en="Interactive Filtering" data-es="Filtrado Interactivo" data-pt="Filtragem Interativa">Interactive Filtering</span></h3>
+                        <p data-en="Dynamic filters and slicers allowing users to drill down into specific data segments for detailed analysis of performance metrics and trends." data-es="Filtros dinámicos y segmentadores que permiten a los usuarios profundizar en segmentos de datos específicos para un análisis detallado de métricas y tendencias de rendimiento." data-pt="Filtros dinâmicos e segmentadores que permitem aos usuários detalhar segmentos específicos de dados para análise detalhada de métricas e tendências de desempenho.">Dynamic filters and slicers allowing users to drill down into specific data segments for detailed analysis of performance metrics and trends.</p>
                     </div>
                     <div class="feature">
-                        <h3 class="feature-title"><i class="fas fa-tags feature-icon"></i> Product Performance</h3>
-                        <p>Analysis of top-performing products and product families, including profitability, sales volume, and seasonal trends to optimize inventory management.</p>
+                        <h3 class="feature-title"><i class="fas fa-users feature-icon"></i> <span data-en="Customer Segmentation" data-es="Segmentación de Clientes" data-pt="Segmentação de Clientes">Customer Segmentation</span></h3>
+                        <p data-en="Advanced segmentation of customer data to identify high-value customers, analyze purchasing patterns, and develop targeted marketing strategies." data-es="Segmentación avanzada de datos de clientes para identificar clientes de alto valor, analizar patrones de compra y desarrollar estrategias de marketing dirigidas." data-pt="Segmentação avançada de dados de clientes para identificar clientes de alto valor, analisar padrões de compra e desenvolver estratégias de marketing direcionadas.">Advanced segmentation of customer data to identify high-value customers, analyze purchasing patterns, and develop targeted marketing strategies.</p>
                     </div>
                     <div class="feature">
-                        <h3 class="feature-title"><i class="fas fa-building feature-icon"></i> Vendor Performance</h3>
-                        <p>Evaluation of vendor performance metrics including product quality, delivery reliability, and profitability to improve supplier relationships.</p>
+                        <h3 class="feature-title"><i class="fas fa-balance-scale feature-icon"></i> <span data-en="Profitability Analysis" data-es="Análisis de Rentabilidad" data-pt="Análise de Lucratividade">Profitability Analysis</span></h3>
+                        <p data-en="Detailed profit margin analysis by product, category, and vendor to identify areas for cost optimization and revenue enhancement." data-es="Análisis detallado del margen de beneficio por producto, categoría y proveedor para identificar áreas de optimización de costos y mejora de ingresos." data-pt="Análise detalhada da margem de lucro por produto, categoria e fornecedor para identificar áreas de otimização de custos e aumento de receita.">Detailed profit margin analysis by product, category, and vendor to identify areas for cost optimization and revenue enhancement.</p>
                     </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Key Performance Indicators</h2>
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <h3 class="kpi-title">Revenue Analysis</h3>
-                        <p class="kpi-description">Total sales by product family, region, and time period with year-over-year growth tracking</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-percentage"></i>
-                        </div>
-                        <h3 class="kpi-title">Profit Margins</h3>
-                        <p class="kpi-description">Gross and net profit margins for products and categories with profitability trend analysis</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3 class="kpi-title">Average Ticket</h3>
-                        <p class="kpi-description">Average order value per transaction and per vendor with comparison to benchmarks</p>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon">
-                            <i class="fas fa-tags"></i>
-                        </div>
-                        <h3 class="kpi-title">Discount Impact</h3>
-                        <p class="kpi-description">Analysis of how discounts affect sales volume and overall profitability</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Technologies Used</h2>
-                <div class="section-content">
-                    <p>The project was developed using a combination of powerful data analysis and visualization tools:</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
-                        <span class="tech-tag"><i class="fas fa-table"></i> Excel</span>
-                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
-                        <span class="tech-tag"><i class="fas fa-database"></i> SQL</span>
-                        <span class="tech-tag"><i class="fas fa-robot"></i> ChatGPT</span>
-                        <span class="tech-tag"><i class="fab fa-figma"></i> Figma</span>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Development Process</h2>
-                <div class="section-content">
-                    <p>The dashboard was developed following a comprehensive approach:</p>
-                    <ol>
-                        <li><strong>Requirement Gathering:</strong> Collaborated with stakeholders to identify key business questions and metrics needed for decision-making.</li>
-                        <li><strong>Data Collection & Preparation:</strong> Extracted data from multiple sources, performed cleaning and transformation to ensure consistency and accuracy.</li>
-                        <li><strong>Data Modeling:</strong> Created relationships between tables and implemented calculated measures using DAX to provide meaningful insights.</li>
-                        <li><strong>Dashboard Design:</strong> Used Figma to create wireframes and mockups, focusing on user experience and data visualization best practices.</li>
-                        <li><strong>Development:</strong> Built the interactive dashboard in Power BI, implementing filters, slicers, and drill-down capabilities.</li>
-                        <li><strong>Testing & Refinement:</strong> Conducted user testing sessions to gather feedback and refine the dashboard for optimal usability.</li>
-                        <li><strong>Deployment:</strong> Published the dashboard for stakeholder access and set up automatic data refreshes.</li>
-                    </ol>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Challenges & Solutions</h2>
-                <div class="challenges">
-                    <ul>
-                        <li><strong>Data Integration:</strong> Merging data from multiple systems with different formats presented challenges. Solved by creating a comprehensive data model and using Python for advanced transformations.</li>
-                        <li><strong>Performance Optimization:</strong> The dashboard initially had performance issues with large datasets. Resolved by optimizing DAX queries, implementing incremental refreshes, and creating aggregation tables.</li>
-                        <li><strong>Complex Calculations:</strong> Some business metrics required complicated formulas. Addressed by leveraging ChatGPT to assist with complex DAX expressions and creating reusable measures.</li>
-                        <li><strong>User Adoption:</strong> Stakeholders had varying levels of data literacy. Overcame this by creating an intuitive interface with tooltips, incorporating familiar terminology, and providing training sessions.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Key Insights Discovered</h2>
-                <div class="section-content">
-                    <ul>
-                        <li>Identified seasonal patterns in product categories, enabling better inventory planning and promotion timing</li>
-                        <li>Discovered that 20% of products contributed to 80% of profits, allowing for strategic resource allocation</li>
-                        <li>Found significant performance variations between vendors, leading to renegotiated contracts with underperforming suppliers</li>
-                        <li>Revealed that certain discount strategies were actually reducing profitability despite increasing sales volume</li>
-                        <li>Uncovered customer segments with high potential for targeted marketing campaigns</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">Business Impact</h2>
-                <div class="section-content">
-                    <p>The BrightBuy dashboard has significantly transformed the company's decision-making process:</p>
-                    <ul>
-                        <li>Enabled more efficient resource allocation based on data-driven insights</li>
-                        <li>Improved inventory management by better predicting seasonal demand</li>
-                        <li>Enhanced vendor relationships through objective performance metrics</li>
-                        <li>Optimized discount strategies to maximize profitability</li>
-                        <li>Streamlined the reporting process, saving approximately 15 hours per week in manual report creation</li>
-                    </ul>
-                    <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="view-link" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> View Live Dashboard
-                    </a>
                 </div>
             </section>
         </div>
@@ -507,5 +539,148 @@
             </div>
         </div>
     </footer>
+
+    <!-- Add JavaScript for the language switcher, theme toggle and animated background -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============ Language Selector - Improved ============
+            const langBtn = document.getElementById('langBtn');
+            const langSelector = document.querySelector('.language-selector');
+            const langOptions = document.querySelectorAll('.lang-option');
+            const currentLangText = document.getElementById('currentLang');
+            
+            // Make language menu stay open when clicking the button
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSelector.classList.toggle('active');
+            });
+            
+            // Close language menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!langSelector.contains(e.target)) {
+                    langSelector.classList.remove('active');
+                }
+            });
+            
+            // Check for saved language
+            const savedLang = localStorage.getItem('portfolio-lang') || 'en';
+            document.documentElement.lang = savedLang;
+            
+            // Get all elements with language attributes
+            const langElements = document.querySelectorAll('[data-en], [data-pt], [data-es]');
+            
+            // Set initial active language
+            langOptions.forEach(option => {
+                const lang = option.getAttribute('data-lang');
+                if (lang === savedLang) {
+                    option.classList.add('active');
+                    currentLangText.textContent = option.querySelector('span').textContent;
+                }
+            });
+            
+            // Update content based on saved language
+            updateLanguageContent(savedLang);
+            
+            // Language option click handler
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Update active option
+                    langOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current language text
+                    currentLangText.textContent = this.querySelector('span').textContent;
+                    
+                    // Update all content
+                    updateLanguageContent(lang);
+                    
+                    // Update html lang attribute
+                    document.documentElement.lang = lang;
+                    
+                    // Save language preference
+                    localStorage.setItem('portfolio-lang', lang);
+                    
+                    // Close the menu
+                    langSelector.classList.remove('active');
+                });
+            });
+            
+            // Function to update all language content
+            function updateLanguageContent(lang) {
+                langElements.forEach(el => {
+                    if (el.hasAttribute(`data-${lang}`)) {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                });
+            }
+            
+            // ============ Theme Toggle - Dark/Light ============
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.checked = false;
+            }
+            
+            // Theme toggle handler
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('portfolio-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('portfolio-theme', 'light');
+                }
+            });
+            
+            // ============ Animated Background ============
+            // Create animated data elements in the background
+            const animatedBg = document.getElementById('animatedBg');
+            const dataWords = [
+                'Sales', 'Revenue', 'Profit', 'Margin', 'KPI',
+                'Products', 'Categories', 'Vendors', 'Customers', 
+                'Inventory', 'Performance', 'Analytics', 'Dashboard',
+                'Top Sellers', 'Trends', 'Growth', 'ROI',
+                'Business Intelligence', 'Data-Driven', 'PowerBI',
+                'Insights', 'Metrics', 'Reporting'
+            ];
+            
+            // Create 20 data particles with random positions and delays
+            for (let i = 0; i < 20; i++) {
+                createDataParticle();
+            }
+            
+            function createDataParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle';
+                particle.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
+                
+                // Random positioning
+                const xPos = Math.random() * 100;
+                particle.style.left = `${xPos}%`;
+                
+                // Random animation delay
+                const delay = Math.random() * 15;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Add to the background
+                animatedBg.appendChild(particle);
+                
+                // Remove and recreate particle after animation completes
+                setTimeout(() => {
+                    particle.remove();
+                    createDataParticle();
+                }, (15 + delay) * 1000);
+            }
+        });
+    </script>
 </body>
 </html> 
