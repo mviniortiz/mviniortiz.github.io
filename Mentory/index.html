@@ -556,6 +556,42 @@
                     </div>
                 </div>
             </section>
+            
+            <section>
+                <h2 class="section-title" data-en="Technical Details" data-es="Detalles Técnicos" data-pt="Detalhes Técnicos">Technical Details</h2>
+                <ul class="summary-list">
+                    <li data-en="<strong>Data Integration:</strong> Connected Google Ads, TikTok Ads, and Facebook Ads API data sources to create a single source of truth for marketing performance metrics."
+                        data-es="<strong>Integración de datos:</strong> Conectó fuentes de datos API de Google Ads, TikTok Ads y Facebook Ads para crear una única fuente de verdad para métricas de rendimiento de marketing."
+                        data-pt="<strong>Integração de dados:</strong> Conectou fontes de dados de API do Google Ads, TikTok Ads e Facebook Ads para criar uma única fonte de verdade para métricas de desempenho de marketing."><strong>Data Integration:</strong> Connected Google Ads, TikTok Ads, and Facebook Ads API data sources to create a single source of truth for marketing performance metrics.</li>
+                    <li data-en="<strong>Custom Metrics:</strong> Implemented calculated metrics including blended cost per acquisition, cross-platform ROAS, and engagement rate comparisons."
+                        data-es="<strong>Métricas personalizadas:</strong> Implementó métricas calculadas que incluyen costo combinado por adquisición, ROAS entre plataformas y comparaciones de tasas de engagement."
+                        data-pt="<strong>Métricas personalizadas:</strong> Implementou métricas calculadas, incluindo custo combinado por aquisição, ROAS entre plataformas e comparações de taxa de engajamento."><strong>Custom Metrics:</strong> Implemented calculated metrics including blended cost per acquisition, cross-platform ROAS, and engagement rate comparisons.</li>
+                    <li data-en="<strong>Data Refresh:</strong> Automated data refresh system updating campaign metrics every 3 hours for near real-time performance monitoring."
+                        data-es="<strong>Actualización de datos:</strong> Sistema automatizado de actualización de datos que actualiza las métricas de la campaña cada 3 horas para un monitoreo de rendimiento casi en tiempo real."
+                        data-pt="<strong>Atualização de dados:</strong> Sistema automatizado de atualização de dados atualizando métricas de campanha a cada 3 horas para monitoramento de desempenho quase em tempo real."><strong>Data Refresh:</strong> Automated data refresh system updating campaign metrics every 3 hours for near real-time performance monitoring.</li>
+                    <li data-en="<strong>Interactive Controls:</strong> Implemented date range selectors, campaign filters, and platform toggles for dynamic data exploration."
+                        data-es="<strong>Controles interactivos:</strong> Implementó selectores de rango de fechas, filtros de campañas y alternadores de plataforma para la exploración dinámica de datos."
+                        data-pt="<strong>Controles interativos:</strong> Implementou seletores de intervalo de datas, filtros de campanha e alternadores de plataforma para exploração dinâmica de dados."><strong>Interactive Controls:</strong> Implemented date range selectors, campaign filters, and platform toggles for dynamic data exploration.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Business Impact" data-es="Impacto Empresarial" data-pt="Impacto nos Negócios">Business Impact</h2>
+                <ul class="summary-list">
+                    <li data-en="<strong>Marketing Efficiency:</strong> Improved ad spend ROI by 22% through real-time performance monitoring and quick campaign optimizations."
+                        data-es="<strong>Eficiencia de marketing:</strong> Mejoró el ROI del gasto publicitario en un 22% a través del monitoreo de rendimiento en tiempo real y optimizaciones rápidas de campañas."
+                        data-pt="<strong>Eficiência de marketing:</strong> Melhorou o ROI do gasto com anúncios em 22% por meio de monitoramento de desempenho em tempo real e otimizações rápidas de campanha."><strong>Marketing Efficiency:</strong> Improved ad spend ROI by 22% through real-time performance monitoring and quick campaign optimizations.</li>
+                    <li data-en="<strong>Decision Making:</strong> Reduced decision-making time on campaign adjustments by 70% with consolidated cross-platform analytics."
+                        data-es="<strong>Toma de decisiones:</strong> Redujo el tiempo de toma de decisiones sobre ajustes de campaña en un 70% con análisis consolidados entre plataformas."
+                        data-pt="<strong>Tomada de decisão:</strong> Reduziu o tempo de tomada de decisão sobre ajustes de campanha em 70% com análises consolidadas entre plataformas."><strong>Decision Making:</strong> Reduced decision-making time on campaign adjustments by 70% with consolidated cross-platform analytics.</li>
+                    <li data-en="<strong>Lead Generation:</strong> Identified the most effective ad creative and platform combinations, increasing lead conversion rates by 35%."
+                        data-es="<strong>Generación de leads:</strong> Identificó los creativos publicitarios y combinaciones de plataformas más efectivas, aumentando las tasas de conversión de leads en un 35%."
+                        data-pt="<strong>Geração de leads:</strong> Identificou as combinações mais eficazes de criativos de anúncios e plataformas, aumentando as taxas de conversão de leads em 35%."><strong>Lead Generation:</strong> Identified the most effective ad creative and platform combinations, increasing lead conversion rates by 35%.</li>
+                    <li data-en="<strong>Budget Allocation:</strong> Optimized marketing budget distribution across platforms based on performance data, resulting in a 28% increase in conversions while maintaining the same total spend."
+                        data-es="<strong>Asignación de presupuesto:</strong> Optimizó la distribución del presupuesto de marketing entre plataformas en función de los datos de rendimiento, lo que resultó en un aumento del 28% en las conversiones manteniendo el mismo gasto total."
+                        data-pt="<strong>Alocação de orçamento:</strong> Otimizou a distribuição do orçamento de marketing entre plataformas com base em dados de desempenho, resultando em um aumento de 28% nas conversões enquanto mantinha o mesmo gasto total."><strong>Budget Allocation:</strong> Optimized marketing budget distribution across platforms based on performance data, resulting in a 28% increase in conversions while maintaining the same total spend.</li>
+                </ul>
+            </section>
         </div>
     </main>
 
@@ -577,7 +613,7 @@
     <!-- Add JavaScript for the language switcher, theme toggle and animated background -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // ============ Language Selector - Improved ============
+            // ============ Language Selector ============
             const langBtn = document.getElementById('langBtn');
             const langSelector = document.querySelector('.language-selector');
             const langOptions = document.querySelectorAll('.lang-option');
@@ -646,7 +682,11 @@
             function updateLanguageContent(lang) {
                 langElements.forEach(el => {
                     if (el.hasAttribute(`data-${lang}`)) {
-                        el.textContent = el.getAttribute(`data-${lang}`);
+                        if (el.tagName === 'LI') {
+                            el.innerHTML = el.getAttribute(`data-${lang}`);
+                        } else {
+                            el.textContent = el.getAttribute(`data-${lang}`);
+                        }
                     }
                 });
             }

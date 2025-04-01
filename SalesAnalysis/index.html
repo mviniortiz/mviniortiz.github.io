@@ -612,13 +612,17 @@
         const currentLanguageText = document.getElementById('current-language');
         
         // Get saved language preference or default to English
-        const currentLang = localStorage.getItem('language') || 'en';
+        const currentLang = localStorage.getItem('portfolio-lang') || 'en';
         
         // Function to update all translatable elements
         function updateLanguage(lang) {
             document.querySelectorAll('[data-en]').forEach(element => {
                 if (element.hasAttribute(`data-${lang}`)) {
-                    element.textContent = element.getAttribute(`data-${lang}`);
+                    if (element.tagName === 'LI') {
+                        element.innerHTML = element.getAttribute(`data-${lang}`);
+                    } else {
+                        element.textContent = element.getAttribute(`data-${lang}`);
+                    }
                 }
             });
             
@@ -646,7 +650,7 @@
         langOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const selectedLang = this.getAttribute('data-lang');
-                localStorage.setItem('language', selectedLang);
+                localStorage.setItem('portfolio-lang', selectedLang);
                 updateLanguage(selectedLang);
                 languageSelector.classList.remove('active');
             });
