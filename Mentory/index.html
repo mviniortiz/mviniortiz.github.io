@@ -288,7 +288,7 @@
             padding: 4rem 0;
         }
 
-        /* Dashboard image container */
+        /* Dashboard iframe container */
         .dashboard-container {
             width: 100%;
             height: 650px;
@@ -300,15 +300,10 @@
             position: relative;
         }
 
-        .dashboard-image {
+        .dashboard-iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .dashboard-container:hover .dashboard-image {
-            transform: scale(1.03);
+            border: none;
         }
         
         .image-overlay {
@@ -527,15 +522,9 @@
         <div class="container">
             <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
             
-            <!-- Replace Live Dashboard with Static Image -->
+            <!-- Live Dashboard Embed instead of static image -->
             <div class="dashboard-container">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Mentory Marketing Dashboard" class="dashboard-image">
-                <div class="image-overlay">
-                    <div class="overlay-content">
-                        <h3 data-en="Marketing Performance Dashboard" data-es="Panel de Rendimiento de Marketing" data-pt="Dashboard de Desempenho de Marketing">Marketing Performance Dashboard</h3>
-                        <p data-en="Interactive visualization of cross-platform marketing KPIs" data-es="Visualización interactiva de KPIs de marketing multiplataforma" data-pt="Visualização interativa de KPIs de marketing multiplataforma">Interactive visualization of cross-platform marketing KPIs</p>
-                    </div>
-                </div>
+                <iframe class="dashboard-iframe" src="https://lookerstudio.google.com/embed/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" allowfullscreen></iframe>
             </div>
             
             <section>
