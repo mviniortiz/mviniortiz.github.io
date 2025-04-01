@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentory Project - Markus Vinicius Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: #dbeafe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 4rem 0 3rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            opacity: 1;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .lang-btn.active {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-content {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-details {
+            padding: 4rem 0;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .kpi-card {
+            background-color: var(--card-bg-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .kpi-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .section-content {
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--hover-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .view-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .challenges {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            margin-bottom: 3rem;
+        }
+
+        .challenges ul {
+            padding-left: 1.5rem;
+        }
+
+        .challenges li {
+            margin-bottom: 0.8rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            margin-bottom: 3rem;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--hover-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar {
+                margin-top: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animated background elements */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.1;
+        }
+
+        .data-particle {
+            position: absolute;
+            color: white;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            animation: floatData 15s linear infinite;
+        }
+
+        @keyframes floatData {
+            0% {
+                transform: translateY(100%) translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100%) translateX(100%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="animated-bg" id="animatedBg">
+            <!-- Data elements will be added by JavaScript -->
+        </div>
+        
+        <div class="language-selector">
+            <button class="lang-btn active" data-lang="en"><i class="fas fa-globe-americas"></i> EN</button>
+            <button class="lang-btn" data-lang="es"><i class="fas fa-globe-americas"></i> ES</button>
+            <button class="lang-btn" data-lang="pt"><i class="fas fa-globe-americas"></i> PT</button>
+        </div>
+        <div class="container">
+            <div class="header-container">
+                <a href="../" class="logo">Markus Vinicius</a>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../#projects">Projects</a></li>
+                        <li><a href="mailto:mviniciusortiz48@gmail.com">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Marketing Campaign Analysis: Mentory" data-es="Análisis de Campañas de Marketing: Mentory" data-pt="Análise de Campanhas de Marketing: Mentory">Marketing Campaign Analysis: Mentory</h1>
+                <p class="hero-subtitle" data-en="Interactive marketing performance dashboard for analyzing KPIs from multiple advertising platforms" data-es="Panel interactivo de rendimiento de marketing para analizar KPIs de múltiples plataformas publicitarias" data-pt="Dashboard interativo de desempenho de marketing para análise de KPIs de múltiplas plataformas publicitárias">Interactive marketing performance dashboard for analyzing KPIs from multiple advertising platforms</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-details">
+        <div class="container">
+            <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
+            
+            <img src="https://github.com/user-attachments/assets/9edcf81c-346d-4772-a786-60accd1711e9" alt="Mentory Dashboard" class="project-image">
+            
+            <section>
+                <h2 class="section-title" data-en="Project Overview" data-es="Descripción del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
+                <div class="section-content">
+                    <p data-en="This project focused on developing an interactive marketing performance dashboard for Mentory using Looker Studio to analyze key performance indicators (KPIs) from multiple advertising platforms including Google Ads, TikTok Ads, and Facebook Ads." data-es="Este proyecto se centró en desarrollar un panel interactivo de rendimiento de marketing para Mentory utilizando Looker Studio para analizar indicadores clave de rendimiento (KPIs) de múltiples plataformas publicitarias, incluyendo Google Ads, TikTok Ads y Facebook Ads." data-pt="Este projeto focou no desenvolvimento de um dashboard interativo de desempenho de marketing para a Mentory usando o Looker Studio para analisar indicadores-chave de desempenho (KPIs) de múltiplas plataformas publicitárias, incluindo Google Ads, TikTok Ads e Facebook Ads.">This project focused on developing an interactive marketing performance dashboard for Mentory using Looker Studio to analyze key performance indicators (KPIs) from multiple advertising platforms including Google Ads, TikTok Ads, and Facebook Ads.</p>
+                    <p data-en="The goal was to provide real-time monitoring of campaign performance, enabling the marketing team to make data-driven decisions and optimize their advertising strategy across different platforms." data-es="El objetivo era proporcionar un monitoreo en tiempo real del rendimiento de las campañas, permitiendo al equipo de marketing tomar decisiones basadas en datos y optimizar su estrategia publicitaria en diferentes plataformas." data-pt="O objetivo era fornecer monitoramento em tempo real do desempenho das campanhas, permitindo que a equipe de marketing tomasse decisões baseadas em dados e otimizasse sua estratégia publicitária em diferentes plataformas.">The goal was to provide real-time monitoring of campaign performance, enabling the marketing team to make data-driven decisions and optimize their advertising strategy across different platforms.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Key Features" data-es="Características Principales" data-pt="Principais Recursos">Key Features</h2>
+                <div class="grid-2">
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-chart-line feature-icon"></i> <span data-en="Multi-platform Analytics" data-es="Análisis Multiplataforma" data-pt="Análise Multiplataforma">Multi-platform Analytics</span></h3>
+                        <p data-en="Consolidated view of performance metrics across Google Ads, TikTok Ads, and Facebook Ads with unified KPI tracking and campaign comparison." data-es="Vista consolidada de métricas de rendimiento en Google Ads, TikTok Ads y Facebook Ads con seguimiento unificado de KPIs y comparación de campañas." data-pt="Visão consolidada das métricas de desempenho no Google Ads, TikTok Ads e Facebook Ads com rastreamento unificado de KPIs e comparação de campanhas.">Consolidated view of performance metrics across Google Ads, TikTok Ads, and Facebook Ads with unified KPI tracking and campaign comparison.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-bullseye feature-icon"></i> <span data-en="Real-time Monitoring" data-es="Monitoreo en Tiempo Real" data-pt="Monitoramento em Tempo Real">Real-time Monitoring</span></h3>
+                        <p data-en="Live dashboard updates with automated data refreshes, allowing the marketing team to track campaign performance as it happens and respond quickly to trends." data-es="Actualizaciones en vivo del panel con actualizaciones automáticas de datos, permitiendo al equipo de marketing seguir el rendimiento de la campaña en tiempo real y responder rápidamente a las tendencias." data-pt="Atualizações ao vivo do dashboard com atualizações automáticas de dados, permitindo que a equipe de marketing acompanhe o desempenho da campanha em tempo real e responda rapidamente às tendências.">Live dashboard updates with automated data refreshes, allowing the marketing team to track campaign performance as it happens and respond quickly to trends.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-tags feature-icon"></i> <span data-en="UTM Tracking" data-es="Seguimiento UTM" data-pt="Rastreamento UTM">UTM Tracking</span></h3>
+                        <p data-en="Custom UTM parameter tracking system to accurately attribute conversions and engagement to specific campaigns, ads, and channels throughout the customer journey." data-es="Sistema personalizado de seguimiento de parámetros UTM para atribuir con precisión conversiones y engagement a campañas, anuncios y canales específicos a lo largo del recorrido del cliente." data-pt="Sistema personalizado de rastreamento de parâmetros UTM para atribuir com precisão conversões e engajamento a campanhas, anúncios e canais específicos ao longo da jornada do cliente.">Custom UTM parameter tracking system to accurately attribute conversions and engagement to specific campaigns, ads, and channels throughout the customer journey.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-rocket feature-icon"></i> <span data-en="Performance Indicators" data-es="Indicadores de Rendimiento" data-pt="Indicadores de Desempenho">Performance Indicators</span></h3>
+                        <p data-en="Visual cards and indicators showing the health of campaigns with color-coded status markers and threshold alerts for key metrics like CPC, CTR, and ROAS." data-es="Tarjetas visuales e indicadores que muestran la salud de las campañas con marcadores de estado codificados por colores y alertas de umbral para métricas clave como CPC, CTR y ROAS." data-pt="Cartões visuais e indicadores mostrando a saúde das campanhas com marcadores de status codificados por cores e alertas de limite para métricas-chave como CPC, CTR e ROAS.">Visual cards and indicators showing the health of campaigns with color-coded status markers and threshold alerts for key metrics like CPC, CTR, and ROAS.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Key Performance Indicators" data-es="Indicadores Clave de Rendimiento" data-pt="Indicadores-Chave de Desempenho">Key Performance Indicators</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="kpi-title" data-en="Cost per Acquisition" data-es="Costo por Adquisición" data-pt="Custo por Aquisição">Cost per Acquisition</h3>
+                        <p class="kpi-description" data-en="Tracking the cost efficiency of ad spend across platforms with comparison to benchmarks" data-es="Seguimiento de la eficiencia de costos del gasto publicitario en todas las plataformas con comparación con los puntos de referencia" data-pt="Rastreamento da eficiência de custos dos gastos com anúncios em todas as plataformas com comparação com benchmarks">Tracking the cost efficiency of ad spend across platforms with comparison to benchmarks</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <h3 class="kpi-title" data-en="Click-Through Rate" data-es="Tasa de Clics" data-pt="Taxa de Cliques">Click-Through Rate</h3>
+                        <p class="kpi-description" data-en="Analyzing ad engagement and effectiveness with historical trend analysis" data-es="Análisis del engagement y la efectividad de los anuncios con análisis de tendencias históricas" data-pt="Análise do engajamento e eficácia dos anúncios com análise de tendências históricas">Analyzing ad engagement and effectiveness with historical trend analysis</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="kpi-title" data-en="Conversion Rate" data-es="Tasa de Conversión" data-pt="Taxa de Conversão">Conversion Rate</h3>
+                        <p class="kpi-description" data-en="Measuring the percentage of clicks that result in conversions with segmentation by platform" data-es="Medición del porcentaje de clics que resultan en conversiones con segmentación por plataforma" data-pt="Medição da porcentagem de cliques que resultam em conversões com segmentação por plataforma">Measuring the percentage of clicks that result in conversions with segmentation by platform</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h3 class="kpi-title" data-en="Return on Ad Spend" data-es="Retorno de la Inversión Publicitaria" data-pt="Retorno sobre Investimento em Anúncios">Return on Ad Spend</h3>
+                        <p class="kpi-description" data-en="Calculating the revenue generated for every dollar spent on advertising" data-es="Cálculo de los ingresos generados por cada dólar gastado en publicidad" data-pt="Cálculo da receita gerada para cada real gasto em publicidade">Calculating the revenue generated for every dollar spent on advertising</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Technologies Used" data-es="Tecnologías Utilizadas" data-pt="Tecnologias Utilizadas">Technologies Used</h2>
+                <div class="section-content">
+                    <p data-en="The dashboard was developed using a combination of powerful data analysis and visualization tools:" data-es="El panel fue desarrollado utilizando una combinación de potentes herramientas de análisis y visualización de datos:" data-pt="O dashboard foi desenvolvido usando uma combinação de poderosas ferramentas de análise e visualização de dados:">The dashboard was developed using a combination of powerful data analysis and visualization tools:</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag"><i class="fas fa-chart-line"></i> Looker Studio</span>
+                        <span class="tech-tag"><i class="fas fa-table"></i> Google Sheets</span>
+                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-tag"><i class="fas fa-desktop"></i> API Integrations</span>
+                        <span class="tech-tag"><i class="fab fa-figma"></i> Figma</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title" data-en="Business Impact" data-es="Impacto en el Negocio" data-pt="Impacto no Negócio">Business Impact</h2>
+                <div class="section-content">
+                    <p data-en="The Mentory marketing dashboard has transformed the company's advertising strategy:" data-es="El panel de marketing de Mentory ha transformado la estrategia publicitaria de la empresa:" data-pt="O dashboard de marketing da Mentory transformou a estratégia publicitária da empresa:">The Mentory marketing dashboard has transformed the company's advertising strategy:</p>
+                    <ul>
+                        <li data-en="Enabled the marketing team to make faster, data-driven decisions by providing real-time performance metrics" data-es="Permitió al equipo de marketing tomar decisiones más rápidas basadas en datos al proporcionar métricas de rendimiento en tiempo real" data-pt="Permitiu que a equipe de marketing tomasse decisões mais rápidas e baseadas em dados, fornecendo métricas de desempenho em tempo real">Enabled the marketing team to make faster, data-driven decisions by providing real-time performance metrics</li>
+                        <li data-en="Improved campaign ROI by 32% through better budget allocation based on performance insights" data-es="Mejoró el ROI de la campaña en un 32% mediante una mejor asignación del presupuesto basada en información sobre el rendimiento" data-pt="Melhorou o ROI da campanha em 32% por meio de melhor alocação de orçamento com base em insights de desempenho">Improved campaign ROI by 32% through better budget allocation based on performance insights</li>
+                        <li data-en="Increased conversion rates by identifying and optimizing underperforming ad creatives and targeting parameters" data-es="Aumentó las tasas de conversión al identificar y optimizar creatividades publicitarias y parámetros de segmentación con bajo rendimiento" data-pt="Aumentou as taxas de conversão identificando e otimizando criativos de anúncios e parâmetros de direcionamento com baixo desempenho">Increased conversion rates by identifying and optimizing underperforming ad creatives and targeting parameters</li>
+                        <li data-en="Reduced time spent on manual reporting by 85%, freeing up the team to focus on strategic planning" data-es="Redujo el tiempo dedicado a la generación manual de informes en un 85%, liberando al equipo para centrarse en la planificación estratégica" data-pt="Reduziu o tempo gasto com relatórios manuais em 85%, liberando a equipe para se concentrar no planejamento estratégico">Reduced time spent on manual reporting by 85%, freeing up the team to focus on strategic planning</li>
+                    </ul>
+                    <a href="https://lookerstudio.google.com/u/1/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" class="view-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://wa.me/5548991696887" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <a href="mailto:mviniciusortiz48@gmail.com"><i class="far fa-envelope fa-lg"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Markus Vinicius. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add JavaScript for the language switcher and animated background -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all elements with language attributes
+            const langElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            // Language switcher click handler
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Update active button
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update content for all elements with language attributes
+                    langElements.forEach(el => {
+                        if (el.hasAttribute(`data-${lang}`)) {
+                            el.textContent = el.getAttribute(`data-${lang}`);
+                        }
+                    });
+                    
+                    // Update html lang attribute
+                    document.documentElement.lang = lang;
+                });
+            });
+            
+            // Create animated data elements in the background
+            const animatedBg = document.getElementById('animatedBg');
+            const dataWords = [
+                'CPC', 'CTR', 'ROAS', 'CPM', 'CPA',
+                'Google Ads', 'TikTok Ads', 'Facebook Ads', 
+                'UTM Tracking', 'Conversions', 'Campaign ROI',
+                'Multi-channel', 'Attribution', 'Analytics',
+                'Ad Creative', 'Target Audience', 'Marketing KPI',
+                'Engagement Rate', 'Click Data', 'Performance',
+                'Looker Studio', 'Real-time', 'Dashboard'
+            ];
+            
+            // Create 20 data particles with random positions and delays
+            for (let i = 0; i < 20; i++) {
+                createDataParticle();
+            }
+            
+            function createDataParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'data-particle';
+                particle.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
+                
+                // Random positioning
+                const xPos = Math.random() * 100;
+                particle.style.left = `${xPos}%`;
+                
+                // Random animation delay
+                const delay = Math.random() * 15;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Add to the background
+                animatedBg.appendChild(particle);
+                
+                // Remove and recreate particle after animation completes
+                setTimeout(() => {
+                    particle.remove();
+                    createDataParticle();
+                }, (15 + delay) * 1000);
+            }
+        });
+    </script>
+</body>
+</html> 
