@@ -5,40 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markus Vinicius - Data Analyst Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: #dbeafe;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 1.5rem;
         }
         
         header {
-            background-color: #2c3e50;
-            background-image: linear-gradient(120deg, #3498db, #2c3e50);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        
+        .hero-content {
             text-align: center;
         }
         
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-            margin-top: 2rem;
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
         
-        header h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .contact-links {
@@ -50,77 +77,186 @@
         }
         
         .contact-links a {
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
         }
         
         .contact-links a:hover {
             background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
-        .project-section {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #ddd;
+        .intro {
+            text-align: center;
+            padding: 3rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Project Grid Layout */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 590px), 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
         
-        .project-section:last-child {
-            border-bottom: none;
+        .project-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .project-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 1.5rem 0;
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px var(--shadow-color);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .project-details ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-details li {
+            margin-bottom: 0.5rem;
         }
         
         .skills-list {
-            margin-top: 1rem;
-            background-color: #f1f5f9;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            display: inline-block;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .skill-tag {
+            background-color: var(--hover-color);
+            color: var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .project-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background-color: #3498db;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            background-color: var(--primary-color);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.2s;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
         
         .project-link:hover {
-            background-color: #2980b9;
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
         }
         
+        .project-link.secondary {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .project-link.secondary:hover {
+            background-color: var(--hover-color);
+        }
+
+        /* Footer */
         footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            color: #666;
         }
         
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            .hero-title {
+                font-size: 2.2rem;
             }
             
-            header {
-                padding: 2rem 0;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
             
-            header h1 {
-                font-size: 2rem;
+            .project-links {
+                flex-direction: column;
             }
         }
     </style>
@@ -128,101 +264,169 @@
 <body>
     <header>
         <div class="container">
-            <h1>Markus Vinicius - Data Analyst Portfolio</h1>
-            <div class="contact-links">
-                <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank">LinkedIn</a>
-                <a href="https://wa.me/5548991696887" target="_blank">WhatsApp</a>
-                <a href="mailto:mviniciusortiz48@gmail.com">Email</a>
+            <div class="hero-content">
+                <h1 class="hero-title">Markus Vinicius</h1>
+                <p class="hero-subtitle">Data Analyst & Business Intelligence Specialist</p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://wa.me/5548991696887" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="mailto:mviniciusortiz48@gmail.com"><i class="far fa-envelope"></i> Email</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <p>Here you can see all the projects that I created and worked on! Each project demonstrates different skills and tools used in data analysis and business intelligence.</p>
-
-        <div class="project-section" id="brightbuy">
-            <h1>Business Intelligence Project: BrightBuy</h1>
-
-            <ul>
-                <li><strong>Developed</strong> an interactive sales performance dashboard for BrightBuy using Power BI, focused on analyzing key business metrics such as total revenue, profit margins, customer segmentation, and vendor performance.</li>
-                <li><strong>Implemented</strong> multiple KPIs, including total sales by product and family, average ticket per vendor, impact of discounts on profitability, and seasonal sales trends to provide actionable insights for strategic decision-making.</li>
-                <li><strong>Created dynamic</strong> and visually engaging dashboards featuring line charts, bar graphs, pie charts, and moving averages, allowing users to explore data from different perspectives (monthly, weekly, and daily views).</li>
-                <li><strong>Extracted</strong> and showcased critical insights such as top-performing products, sales peaks during promotional periods, and discrepancies in vendor performance, enabling more efficient resource allocation and targeted business improvements.</li>
-            </ul>
-
-            <img src="https://github.com/user-attachments/assets/9d64abc1-055b-45a6-9a2e-23468a52bd4e" alt="BrightBuy Dashboard">
-
-            <div class="skills-list">
-                <strong>Skills used:</strong> Data Analysis, PowerBI, Excel, Python, ChatGPT and Figma
-            </div>
-            
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">View Project</a>
-            <a href="BrightBuy/" class="project-link">Project Details</a>
+    <section class="intro">
+        <div class="container">
+            <p>Welcome to my portfolio! Here you can explore the data analysis and business intelligence projects I've created, demonstrating my skills in visualization, data modeling, and extracting actionable insights.</p>
         </div>
+    </section>
 
-        <div class="project-section" id="mentory">
-            <h1>Marketing Campaign Analysis: Mentory</h1>
+    <section class="projects">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- BrightBuy Project -->
+                <div class="project-card">
+                    <img src="https://github.com/user-attachments/assets/9d64abc1-055b-45a6-9a2e-23468a52bd4e" alt="BrightBuy Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h2 class="project-title">Business Intelligence Project: BrightBuy</h2>
+                        <div class="project-description">
+                            <p>Interactive sales performance dashboard analyzing key business metrics including revenue, profit margins, customer segmentation, and vendor performance.</p>
+                        </div>
+                        <div class="project-details">
+                            <ul>
+                                <li><strong>Implemented</strong> multiple KPIs for sales by product, average ticket per vendor, and impact of discounts</li>
+                                <li><strong>Created</strong> dynamic visualizations for monthly, weekly, and daily perspectives</li>
+                                <li><strong>Extracted</strong> critical insights for resource allocation and business improvements</li>
+                            </ul>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
+                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
+                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                            <span class="skill-tag"><i class="fas fa-robot"></i> ChatGPT</span>
+                            <span class="skill-tag"><i class="fab fa-figma"></i> Figma</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                            </a>
+                            <a href="BrightBuy/" class="project-link secondary">
+                                <i class="fas fa-info-circle"></i> Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <ul>
-                <li><strong>Developed</strong> an interactive marketing performance dashboard using Looker Studio, where my focus was on analyzing the main KPIs from Google Ads, TikTok Ads and Facebook Ads.</li>
-                <li>With the help of ChatGPT, <strong>implemented several KPIs</strong> to check the health of all the campaigns running in real time.</li>
-                <li>Using Looker Studio, I've <strong>created some visually engaging dashboard</strong> featuring line charts, bar graphs and several cards to show performance indicators.</li>
-                <li><strong>Created a tracking system</strong> using UTMs and Excel which we could see what campaign was performing the most.</li>
-            </ul>
+                <!-- Mentory Project -->
+                <div class="project-card">
+                    <img src="https://github.com/user-attachments/assets/9edcf81c-346d-4772-a786-60accd1711e9" alt="Mentory Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h2 class="project-title">Marketing Campaign Analysis: Mentory</h2>
+                        <div class="project-description">
+                            <p>Interactive marketing performance dashboard analyzing KPIs from Google Ads, TikTok Ads, and Facebook Ads for real-time campaign monitoring.</p>
+                        </div>
+                        <div class="project-details">
+                            <ul>
+                                <li><strong>Implemented</strong> KPIs to check the health of all campaigns running in real time</li>
+                                <li><strong>Created</strong> visually engaging dashboard with line charts, bar graphs and performance indicators</li>
+                                <li><strong>Developed</strong> a UTM tracking system to measure campaign performance</li>
+                            </ul>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-analytics"></i> Looker Studio</span>
+                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
+                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                            <span class="skill-tag"><i class="fas fa-robot"></i> ChatGPT</span>
+                            <span class="skill-tag"><i class="fab fa-figma"></i> Figma</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://lookerstudio.google.com/u/1/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                            </a>
+                            <a href="Mentory/" class="project-link secondary">
+                                <i class="fas fa-info-circle"></i> Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <img src="https://github.com/user-attachments/assets/9edcf81c-346d-4772-a786-60accd1711e9" alt="Mentory Dashboard">
+                <!-- Spotify Project -->
+                <div class="project-card">
+                    <img src="https://github.com/user-attachments/assets/c019e917-7a00-414c-901a-bfb46753dca3" alt="Spotify Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h2 class="project-title">Business Intelligence Project: Spotify</h2>
+                        <div class="project-description">
+                            <p>Music performance analysis dashboard identifying most played tracks in 2023 and predicting future trends using machine learning.</p>
+                        </div>
+                        <div class="project-details">
+                            <ul>
+                                <li><strong>Implemented</strong> machine learning with linear regression to predict popular music trends</li>
+                                <li><strong>Created</strong> dynamic visuals including monthly top song displays using HTML</li>
+                                <li><strong>Developed</strong> DAX measures for powerful insights from modeled data</li>
+                            </ul>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
+                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
+                            <span class="skill-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="Spotify/" class="project-link secondary">
+                                <i class="fas fa-info-circle"></i> Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="skills-list">
-                <strong>Skills used:</strong> Looker Studio, Excel, Python, ChatGPT and Figma
+                <!-- Sales Analysis Project -->
+                <div class="project-card">
+                    <img src="https://github.com/user-attachments/assets/99ea5b42-bf8d-485e-8b87-d5c8219ca630" alt="Sales Analysis Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h2 class="project-title">Sales Analysis: Case Project</h2>
+                        <div class="project-description">
+                            <p>Comprehensive sales analysis dashboard focusing on product performance and using the Pareto principle to identify key products.</p>
+                        </div>
+                        <div class="project-details">
+                            <ul>
+                                <li><strong>Created</strong> visually impactful graphics using Figma and PowerPoint</li>
+                                <li><strong>Unified</strong> 9 different tables into a single table for complex measure creation</li>
+                                <li><strong>Applied</strong> Pareto Law to identify the most valuable products</li>
+                            </ul>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
+                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                            <span class="skill-tag"><i class="fas fa-robot"></i> ChatGPT-4o</span>
+                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTEyNmFkOGQtZTU5YS00MzlkLTk5MzMtYjhkOGVlOTFmNDc5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                            </a>
+                            <a href="SalesAnalysis/" class="project-link secondary">
+                                <i class="fas fa-info-circle"></i> Project Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <a href="https://lookerstudio.google.com/u/1/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" class="project-link" target="_blank">View Project</a>
-            <a href="Mentory/" class="project-link">Project Details</a>
         </div>
-
-        <div class="project-section" id="spotify">
-            <h1>Business Intelligence Project: Spotify</h1>
-
-            <ul>
-                <li><strong>Created</strong> an interactive music performance analysis dashboard for Spotify using PowerBI, focused on analyzing what musics were played the most in 2023.</li>
-                <li><strong>Implemented</strong> the use of machine learning using linear regression for measuring what was going to be the most played musics in 2024.</li>
-                <li><strong>Created dynamic</strong> visuals and graphics featuring line charts, an image of the most played song of the month using HTML, moving averages, and several filters to see data from different perspective.</li>
-                <li><strong>Data modeled</strong> the tables inside the Power BI and used DAX language to create new measures to ensure powerful insights from the data.</li>
-            </ul>
-
-            <img src="https://github.com/user-attachments/assets/c019e917-7a00-414c-901a-bfb46753dca3" alt="Spotify Dashboard">
-
-            <div class="skills-list">
-                <strong>Skills used:</strong> PowerBI, Python, and Excel
-            </div>
-            
-            <a href="Spotify/" class="project-link">Project Details</a>
-        </div>
-
-        <div class="project-section" id="sales-analysis">
-            <h1>Sales Analysis: Case Project</h1>
-
-            <ul>
-                <li><strong>Elaborated</strong> a general sales analysis dashboard for a case project using Power BI, Excel and Python, focused on analyzing what products were the most sold.</li>
-                <li><strong>Created</strong> the visuals and background using Figma and PowerPoint for visually impactful graphics.</li>
-                <li><strong>Modeling data</strong> with Power BI and Excel with the help of ChatGPT-4o which I united all of 9 tables into 1 table. That helped me to create complex measures.</li>
-                <li>Used <strong>Pareto Law</strong> to measure which product was the most sold on the company.</li>
-            </ul>
-
-            <img src="https://github.com/user-attachments/assets/99ea5b42-bf8d-485e-8b87-d5c8219ca630" alt="Sales Analysis Dashboard">
-
-            <div class="skills-list">
-                <strong>Skills used:</strong> PowerBI, Python, ChatGPT-4o and Excel
-            </div>
-            
-            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTEyNmFkOGQtZTU5YS00MzlkLTk5MzMtYjhkOGVlOTFmNDc5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">View Project</a>
-            <a href="SalesAnalysis/" class="project-link">Project Details</a>
-        </div>
-    </div>
+    </section>
 
     <footer>
         <div class="container">
-            <p>All rights reserved to Markus Vinicius &copy; 2025</p>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://wa.me/5548991696887" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <a href="mailto:mviniciusortiz48@gmail.com"><i class="far fa-envelope fa-lg"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Markus Vinicius. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 </body>

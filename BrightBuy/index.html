@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightBuy Project - Markus Vinicius Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: #dbeafe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 4rem 0 3rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .navbar ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            opacity: 1;
+        }
+
+        .hero-content {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-details {
+            padding: 4rem 0;
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .kpi-card {
+            background-color: var(--card-bg-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .kpi-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .section-content {
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--hover-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .view-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .challenges {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            margin-bottom: 3rem;
+        }
+
+        .challenges ul {
+            padding-left: 1.5rem;
+        }
+
+        .challenges li {
+            margin-bottom: 0.8rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            margin-bottom: 3rem;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: var(--hover-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar {
+                margin-top: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="../" class="logo">Markus Vinicius</a>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../#projects">Projects</a></li>
+                        <li><a href="mailto:mviniciusortiz48@gmail.com">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">BrightBuy Dashboard Project</h1>
+                <p class="hero-subtitle">An interactive sales performance dashboard providing actionable insights for strategic decision-making</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="project-details">
+        <div class="container">
+            <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            
+            <img src="https://github.com/user-attachments/assets/9d64abc1-055b-45a6-9a2e-23468a52bd4e" alt="BrightBuy Dashboard" class="project-image">
+            
+            <section>
+                <h2 class="section-title">Project Overview</h2>
+                <div class="section-content">
+                    <p>This project focused on developing an interactive sales performance dashboard for BrightBuy, a retail company looking to leverage their sales data for better business decisions. The dashboard provides a comprehensive view of key business metrics such as total revenue, profit margins, customer segmentation, and vendor performance.</p>
+                    <p>The goal was to create a powerful tool that enables stakeholders to identify trends, spot opportunities, and make data-driven decisions to improve business performance.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Key Features</h2>
+                <div class="grid-2">
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-chart-line feature-icon"></i> Sales Performance Analytics</h3>
+                        <p>Comprehensive analysis of sales data across different time periods (yearly, quarterly, monthly) with trend identification and comparison capabilities.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-users feature-icon"></i> Customer Segmentation</h3>
+                        <p>Detailed breakdown of customer segments based on purchasing behavior, demographics, and value, enabling targeted marketing and personalized customer experiences.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-tags feature-icon"></i> Product Performance</h3>
+                        <p>Analysis of top-performing products and product families, including profitability, sales volume, and seasonal trends to optimize inventory management.</p>
+                    </div>
+                    <div class="feature">
+                        <h3 class="feature-title"><i class="fas fa-building feature-icon"></i> Vendor Performance</h3>
+                        <p>Evaluation of vendor performance metrics including product quality, delivery reliability, and profitability to improve supplier relationships.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Key Performance Indicators</h2>
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="kpi-title">Revenue Analysis</h3>
+                        <p class="kpi-description">Total sales by product family, region, and time period with year-over-year growth tracking</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3 class="kpi-title">Profit Margins</h3>
+                        <p class="kpi-description">Gross and net profit margins for products and categories with profitability trend analysis</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="kpi-title">Average Ticket</h3>
+                        <p class="kpi-description">Average order value per transaction and per vendor with comparison to benchmarks</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h3 class="kpi-title">Discount Impact</h3>
+                        <p class="kpi-description">Analysis of how discounts affect sales volume and overall profitability</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Technologies Used</h2>
+                <div class="section-content">
+                    <p>The project was developed using a combination of powerful data analysis and visualization tools:</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag"><i class="fas fa-chart-bar"></i> Power BI</span>
+                        <span class="tech-tag"><i class="fas fa-table"></i> Excel</span>
+                        <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="tech-tag"><i class="fas fa-database"></i> SQL</span>
+                        <span class="tech-tag"><i class="fas fa-robot"></i> ChatGPT</span>
+                        <span class="tech-tag"><i class="fab fa-figma"></i> Figma</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Development Process</h2>
+                <div class="section-content">
+                    <p>The dashboard was developed following a comprehensive approach:</p>
+                    <ol>
+                        <li><strong>Requirement Gathering:</strong> Collaborated with stakeholders to identify key business questions and metrics needed for decision-making.</li>
+                        <li><strong>Data Collection & Preparation:</strong> Extracted data from multiple sources, performed cleaning and transformation to ensure consistency and accuracy.</li>
+                        <li><strong>Data Modeling:</strong> Created relationships between tables and implemented calculated measures using DAX to provide meaningful insights.</li>
+                        <li><strong>Dashboard Design:</strong> Used Figma to create wireframes and mockups, focusing on user experience and data visualization best practices.</li>
+                        <li><strong>Development:</strong> Built the interactive dashboard in Power BI, implementing filters, slicers, and drill-down capabilities.</li>
+                        <li><strong>Testing & Refinement:</strong> Conducted user testing sessions to gather feedback and refine the dashboard for optimal usability.</li>
+                        <li><strong>Deployment:</strong> Published the dashboard for stakeholder access and set up automatic data refreshes.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Challenges & Solutions</h2>
+                <div class="challenges">
+                    <ul>
+                        <li><strong>Data Integration:</strong> Merging data from multiple systems with different formats presented challenges. Solved by creating a comprehensive data model and using Python for advanced transformations.</li>
+                        <li><strong>Performance Optimization:</strong> The dashboard initially had performance issues with large datasets. Resolved by optimizing DAX queries, implementing incremental refreshes, and creating aggregation tables.</li>
+                        <li><strong>Complex Calculations:</strong> Some business metrics required complicated formulas. Addressed by leveraging ChatGPT to assist with complex DAX expressions and creating reusable measures.</li>
+                        <li><strong>User Adoption:</strong> Stakeholders had varying levels of data literacy. Overcame this by creating an intuitive interface with tooltips, incorporating familiar terminology, and providing training sessions.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Key Insights Discovered</h2>
+                <div class="section-content">
+                    <ul>
+                        <li>Identified seasonal patterns in product categories, enabling better inventory planning and promotion timing</li>
+                        <li>Discovered that 20% of products contributed to 80% of profits, allowing for strategic resource allocation</li>
+                        <li>Found significant performance variations between vendors, leading to renegotiated contracts with underperforming suppliers</li>
+                        <li>Revealed that certain discount strategies were actually reducing profitability despite increasing sales volume</li>
+                        <li>Uncovered customer segments with high potential for targeted marketing campaigns</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Business Impact</h2>
+                <div class="section-content">
+                    <p>The BrightBuy dashboard has significantly transformed the company's decision-making process:</p>
+                    <ul>
+                        <li>Enabled more efficient resource allocation based on data-driven insights</li>
+                        <li>Improved inventory management by better predicting seasonal demand</li>
+                        <li>Enhanced vendor relationships through objective performance metrics</li>
+                        <li>Optimized discount strategies to maximize profitability</li>
+                        <li>Streamlined the reporting process, saving approximately 15 hours per week in manual report creation</li>
+                    </ul>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="view-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/mviniortiz/" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://wa.me/5548991696887" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    <a href="mailto:mviniciusortiz48@gmail.com"><i class="far fa-envelope fa-lg"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 Markus Vinicius. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
