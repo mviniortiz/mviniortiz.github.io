@@ -605,56 +605,6 @@
         </div>
     </section>
 
-    <!-- Sales Projects Section -->
-    <section class="projects">
-        <div class="container">
-            <h2 class="section-title" data-en="Sales Analytics" data-es="Análisis de Ventas" data-pt="Análise de Vendas">Sales Analytics</h2>
-            <p class="section-description" data-en="Projects focused on sales performance, trend analysis, and revenue optimization" data-es="Proyectos enfocados en el rendimiento de ventas, análisis de tendencias y optimización de ingresos" data-pt="Projetos focados em desempenho de vendas, análise de tendências e otimização de receita">Projects focused on sales performance, trend analysis, and revenue optimization</p>
-            
-            <div class="projects-grid">
-                <!-- Sales Analysis Project -->
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Sales Analysis Dashboard" class="project-image">
-                    <div class="project-content">
-                        <h2 class="project-title" data-en="Sales Analysis: Case Project" data-es="Análisis de Ventas: Proyecto de Caso" data-pt="Análise de Vendas: Projeto de Caso">Sales Analysis: Case Project</h2>
-                        <div class="project-description">
-                            <p data-en="Comprehensive sales analysis dashboard focusing on product performance and using the Pareto principle to identify key products."
-                               data-es="Panel completo de análisis de ventas que se centra en el rendimiento del producto y utiliza el principio de Pareto para identificar productos clave."
-                               data-pt="Dashboard abrangente de análise de vendas focado no desempenho do produto e usando o princípio de Pareto para identificar produtos-chave.">Comprehensive sales analysis dashboard focusing on product performance and using the Pareto principle to identify key products.</p>
-                        </div>
-                        <div class="project-details">
-                            <ul>
-                                <li data-en="<strong>Created</strong> visually impactful graphics using Figma and PowerPoint"
-                                    data-es="<strong>Creó</strong> gráficos visualmente impactantes utilizando Figma y PowerPoint"
-                                    data-pt="<strong>Criou</strong> gráficos visualmente impactantes usando Figma e PowerPoint"><strong>Created</strong> visually impactful graphics using Figma and PowerPoint</li>
-                                <li data-en="<strong>Unified</strong> 9 different tables into a single table for complex measure creation"
-                                    data-es="<strong>Unificó</strong> 9 tablas diferentes en una sola tabla para la creación de medidas complejas"
-                                    data-pt="<strong>Unificou</strong> 9 tabelas diferentes em uma única tabela para criação de medidas complexas"><strong>Unified</strong> 9 different tables into a single table for complex measure creation</li>
-                                <li data-en="<strong>Applied</strong> Pareto Law to identify the most valuable products"
-                                    data-es="<strong>Aplicó</strong> la Ley de Pareto para identificar los productos más valiosos"
-                                    data-pt="<strong>Aplicou</strong> a Lei de Pareto para identificar os produtos mais valiosos"><strong>Applied</strong> Pareto Law to identify the most valuable products</li>
-                            </ul>
-                        </div>
-                        <div class="skills-list">
-                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
-                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
-                            <span class="skill-tag"><i class="fas fa-robot"></i> ChatGPT-4o</span>
-                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiMGVjNGM1YzItYmFmZi00ODM2LWFkZDMtN2QzMTdiZWM0M2U5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
-                            </a>
-                            <a href="SalesAnalysis/" class="project-link">
-                                <i class="fas fa-info-circle"></i> <span data-en="Project Details" data-es="Detalles del Proyecto" data-pt="Detalhes do Projeto">Project Details</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Managerial Projects Section -->
     <section class="projects">
         <div class="container">
@@ -835,6 +785,13 @@
                 if (lang === savedLang) {
                     option.classList.add('active');
                     currentLangText.textContent = option.querySelector('span').textContent;
+                    
+                    // Set initial flag image
+                    const flagImg = option.querySelector('.flag-icon');
+                    const currentFlag = document.getElementById('currentFlag');
+                    if (flagImg && currentFlag) {
+                        currentFlag.src = flagImg.src;
+                    }
                 }
             });
             
@@ -851,8 +808,15 @@
                     langOptions.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Update current language text
+                    // Update current language text and flag
                     currentLangText.textContent = this.querySelector('span').textContent;
+                    
+                    // Update the flag image
+                    const flagImg = this.querySelector('.flag-icon');
+                    const currentFlag = document.getElementById('currentFlag');
+                    if (flagImg && currentFlag) {
+                        currentFlag.src = flagImg.src;
+                    }
                     
                     // Update all content
                     updateLanguageContent(lang);
