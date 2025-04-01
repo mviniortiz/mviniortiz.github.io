@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Absenteeism Analysis - Markus Vinicius</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --background-color: #f9fafb;
+            --card-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --hover-color: #dbeafe;
+        }
+        
+        /* Dark Theme - Darker version */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --secondary-color: #1d4ed8;
+            --accent-color: #60a5fa;
+            --text-color: #f9fafb;
+            --text-light: #d1d5db;
+            --background-color: #0f172a;  /* Darker background */
+            --card-bg-color: #1e293b;     /* Darker card background */
+            --border-color: #334155;      /* Darker border */
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-color: #2563eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Project Details Page Styles */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .project-details {
+            padding-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 2.5rem 0 1rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-content {
+            margin-bottom: 2rem;
+        }
+        
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .section-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Feature List Styles */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-color);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .feature-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* Dashboard iframe container */
+        .dashboard-container {
+            width: 100%;
+            height: 650px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            margin-bottom: 3rem;
+            background-color: var(--card-bg-color);
+            position: relative;
+        }
+        
+        .dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Technologies Section */
+        .technologies {
+            margin: 2rem 0;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+        }
+        
+        .tech-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .tech-name {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        /* Theme Toggle Styles */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toggle-label {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-color);
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--accent-color);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+            background-color: white;
+        }
+        
+        .toggle-icon {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+        
+        /* Language Selector Styles */
+        .language-selector {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+        
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 160px;
+            transition: opacity 0.2s ease;
+        }
+        
+        .language-selector.active .lang-menu {
+            display: block;
+        }
+        
+        .lang-btn {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .lang-btn:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s ease;
+        }
+        
+        .lang-option:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lang-option.active {
+            background-color: var(--hover-color);
+            font-weight: 500;
+        }
+        
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive Adjustments */
+        @media screen and (max-width: 64em) {
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <span class="toggle-icon"><i class="fas fa-sun"></i></span>
+        <label class="toggle-switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-icon"><i class="fas fa-moon"></i></span>
+    </div>
+    
+    <div class="language-selector">
+        <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> <span id="currentLang">English</span></button>
+        <div class="lang-menu">
+            <div class="lang-option" data-lang="en">
+                <img src="https://flagicons.lipis.dev/flags/4x3/us.svg" alt="English" class="flag-icon">
+                <span>English</span>
+            </div>
+            <div class="lang-option" data-lang="es">
+                <img src="https://flagicons.lipis.dev/flags/4x3/es.svg" alt="Español" class="flag-icon">
+                <span>Español</span>
+            </div>
+            <div class="lang-option" data-lang="pt">
+                <img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Português" class="flag-icon">
+                <span>Português</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="project-details">
+        <div class="container">
+            <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
+            
+            <!-- Live Dashboard Embed instead of static image -->
+            <div class="dashboard-container">
+                <iframe class="dashboard-iframe" src="https://app.powerbi.com/view?r=eyJrIjoiYmI3NWIyNTEtYThkYi00YWM1LWI1Y2YtZjk0NGYyN2I5NDNhIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" allowfullscreen></iframe>
+            </div>
+            
+            <section>
+                <h2 class="section-title" data-en="Project Overview" data-es="Descripción del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
+                <div class="section-content">
+                    <p data-en="This Human Resources dashboard focuses on tracking and analyzing employee absenteeism patterns across different departments, roles, and time periods to support data-driven workforce management decisions." 
+                       data-es="Este panel de Recursos Humanos se centra en el seguimiento y análisis de patrones de ausentismo de empleados en diferentes departamentos, roles y períodos de tiempo para respaldar decisiones de gestión de fuerza laboral basadas en datos." 
+                       data-pt="Este dashboard de Recursos Humanos concentra-se no rastreamento e análise de padrões de absenteísmo de funcionários em diferentes departamentos, funções e períodos de tempo para apoiar decisões de gestão de força de trabalho baseadas em dados.">This Human Resources dashboard focuses on tracking and analyzing employee absenteeism patterns across different departments, roles, and time periods to support data-driven workforce management decisions.</p>
+                    
+                    <p data-en="The goal was to provide HR managers and company leadership with a comprehensive view of attendance rates, absenteeism costs, and frequency distributions, enabling them to identify concerning patterns early and implement targeted interventions when necessary."
+                       data-es="El objetivo era proporcionar a los gerentes de RRHH y a la dirección de la empresa una visión completa de las tasas de asistencia, los costos de ausentismo y las distribuciones de frecuencia, permitiéndoles identificar patrones preocupantes temprano e implementar intervenciones específicas cuando sea necesario."
+                       data-pt="O objetivo era fornecer aos gerentes de RH e à liderança da empresa uma visão abrangente das taxas de comparecimento, custos de absenteísmo e distribuições de frequência, permitindo que identificassem padrões preocupantes precocemente e implementassem intervenções direcionadas quando necessário.">The goal was to provide HR managers and company leadership with a comprehensive view of attendance rates, absenteeism costs, and frequency distributions, enabling them to identify concerning patterns early and implement targeted interventions when necessary.</p>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title" data-en="Key Features" data-es="Características Principales" data-pt="Principais Características">Key Features</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="feature-title" data-en="Trend Analysis" data-es="Análisis de Tendencias" data-pt="Análise de Tendências">Trend Analysis</h3>
+                        <p class="feature-description" data-en="Visualizes absenteeism trends over time with monthly, quarterly, and yearly comparisons to identify seasonal patterns and long-term shifts." 
+                                                     data-es="Visualiza tendencias de ausentismo a lo largo del tiempo con comparaciones mensuales, trimestrales y anuales para identificar patrones estacionales y cambios a largo plazo." 
+                                                     data-pt="Visualiza tendências de absenteísmo ao longo do tempo com comparações mensais, trimestrais e anuais para identificar padrões sazonais e mudanças de longo prazo.">Visualizes absenteeism trends over time with monthly, quarterly, and yearly comparisons to identify seasonal patterns and long-term shifts.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-sitemap"></i></div>
+                        <h3 class="feature-title" data-en="Departmental Breakdown" data-es="Desglose por Departamentos" data-pt="Divisão Departamental">Departmental Breakdown</h3>
+                        <p class="feature-description" data-en="Analyzes absenteeism rates by department and role to highlight areas with higher than average absence frequencies." 
+                                                     data-es="Analiza las tasas de ausentismo por departamento y rol para destacar áreas con frecuencias de ausencia superiores al promedio." 
+                                                     data-pt="Analisa taxas de absenteísmo por departamento e função para destacar áreas com frequências de ausência acima da média.">Analyzes absenteeism rates by department and role to highlight areas with higher than average absence frequencies.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <h3 class="feature-title" data-en="Absence Calendar Heatmap" data-es="Mapa de Calor del Calendario de Ausencias" data-pt="Mapa de Calor do Calendário de Ausências">Absence Calendar Heatmap</h3>
+                        <p class="feature-description" data-en="Calendar view highlighting high-absence days and patterns throughout the year to identify potential problematic periods." 
+                                                     data-es="Vista de calendario que resalta días y patrones de alta ausencia durante todo el año para identificar períodos potencialmente problemáticos." 
+                                                     data-pt="Visualização de calendário destacando dias e padrões de alta ausência ao longo do ano para identificar períodos potencialmente problemáticos.">Calendar view highlighting high-absence days and patterns throughout the year to identify potential problematic periods.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3 class="feature-title" data-en="Cost Impact Analysis" data-es="Análisis de Impacto de Costos" data-pt="Análise de Impacto de Custo">Cost Impact Analysis</h3>
+                        <p class="feature-description" data-en="Calculates the financial impact of absenteeism, including productivity loss, replacement costs, and administrative overhead." 
+                                                     data-es="Calcula el impacto financiero del ausentismo, incluida la pérdida de productividad, los costos de reemplazo y los gastos administrativos." 
+                                                     data-pt="Calcula o impacto financeiro do absenteísmo, incluindo perda de produtividade, custos de substituição e despesas administrativas.">Calculates the financial impact of absenteeism, including productivity loss, replacement costs, and administrative overhead.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-bell"></i></div>
+                        <h3 class="feature-title" data-en="Early Warning System" data-es="Sistema de Alerta Temprana" data-pt="Sistema de Alerta Precoce">Early Warning System</h3>
+                        <p class="feature-description" data-en="Automated alerts for concerning patterns based on statistical thresholds to proactively address potential issues." 
+                                                     data-es="Alertas automatizadas para patrones preocupantes basados en umbrales estadísticos para abordar proactivamente posibles problemas." 
+                                                     data-pt="Alertas automatizados para padrões preocupantes baseados em limiares estatísticos para resolver problemas potenciais de forma proativa.">Automated alerts for concerning patterns based on statistical thresholds to proactively address potential issues.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-user-check"></i></div>
+                        <h3 class="feature-title" data-en="Attendance Rate KPIs" data-es="KPIs de Tasa de Asistencia" data-pt="KPIs de Taxa de Comparecimento">Attendance Rate KPIs</h3>
+                        <p class="feature-description" data-en="Key performance indicators tracking attendance rates against targets with color-coded visual indicators for quick reference." 
+                                                     data-es="Indicadores clave de rendimiento que rastrean las tasas de asistencia en comparación con los objetivos con indicadores visuales codificados por colores para referencia rápida." 
+                                                     data-pt="Indicadores-chave de desempenho rastreando taxas de comparecimento em relação às metas com indicadores visuais codificados por cores para referência rápida.">Key performance indicators tracking attendance rates against targets with color-coded visual indicators for quick reference.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title" data-en="Technical Details" data-es="Detalles Técnicos" data-pt="Detalhes Técnicos">Technical Details</h2>
+                <div class="section-content">
+                    <p data-en="This dashboard was developed using Microsoft Power BI and integrates data from multiple HR systems. The backend data processing involves SQL queries for data extraction and transformation before visualization."
+                       data-es="Este panel se desarrolló utilizando Microsoft Power BI e integra datos de múltiples sistemas de RRHH. El procesamiento de datos backend implica consultas SQL para la extracción y transformación de datos antes de la visualización."
+                       data-pt="Este dashboard foi desenvolvido usando Microsoft Power BI e integra dados de múltiplos sistemas de RH. O processamento de dados de backend envolve consultas SQL para extração e transformação de dados antes da visualização.">This dashboard was developed using Microsoft Power BI and integrates data from multiple HR systems. The backend data processing involves SQL queries for data extraction and transformation before visualization.</p>
+                    
+                    <p data-en="The data refreshes daily, pulling attendance records from the company's time tracking system, absence records from the HR database, and departmental information from the organizational structure database."
+                       data-es="Los datos se actualizan diariamente, extrayendo registros de asistencia del sistema de seguimiento de tiempo de la empresa, registros de ausencia de la base de datos de RRHH e información departamental de la base de datos de estructura organizacional."
+                       data-pt="Os dados são atualizados diariamente, extraindo registros de presença do sistema de controle de ponto da empresa, registros de ausência do banco de dados de RH e informações departamentais do banco de dados de estrutura organizacional.">The data refreshes daily, pulling attendance records from the company's time tracking system, absence records from the HR database, and departmental information from the organizational structure database.</p>
+                    
+                    <div class="technologies">
+                        <h3 data-en="Technologies Used" data-es="Tecnologías Utilizadas" data-pt="Tecnologias Utilizadas">Technologies Used</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-chart-bar"></i></div>
+                                <div class="tech-name">Power BI</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-database"></i></div>
+                                <div class="tech-name">SQL</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-table"></i></div>
+                                <div class="tech-name">Excel</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-code"></i></div>
+                                <div class="tech-name">DAX</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-users"></i></div>
+                                <div class="tech-name">HR Analytics</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="tech-name">Report Automation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="section-title" data-en="Outcomes & Impact" data-es="Resultados e Impacto" data-pt="Resultados e Impacto">Outcomes & Impact</h2>
+                <div class="section-content">
+                    <ul>
+                        <li data-en="Reduced overall absenteeism rate by 15% through data-driven intervention strategies and early pattern identification." 
+                            data-es="Redujo la tasa general de ausentismo en un 15% a través de estrategias de intervención basadas en datos e identificación temprana de patrones." 
+                            data-pt="Reduziu a taxa geral de absenteísmo em 15% por meio de estratégias de intervenção baseadas em dados e identificação precoce de padrões.">Reduced overall absenteeism rate by 15% through data-driven intervention strategies and early pattern identification.</li>
+                        
+                        <li data-en="Enabled HR to proactively address department-specific issues before they escalated, improving employee satisfaction and productivity." 
+                            data-es="Permitió a RRHH abordar proactivamente problemas específicos del departamento antes de que se intensificaran, mejorando la satisfacción y productividad de los empleados." 
+                            data-pt="Permitiu que o RH abordasse proativamente questões específicas do departamento antes que escalassem, melhorando a satisfação e produtividade dos funcionários.">Enabled HR to proactively address department-specific issues before they escalated, improving employee satisfaction and productivity.</li>
+                        
+                        <li data-en="Provided leadership with clear ROI metrics on wellness and engagement initiatives by tracking their impact on attendance rates." 
+                            data-es="Proporcionó al liderazgo métricas claras de ROI en iniciativas de bienestar y compromiso mediante el seguimiento de su impacto en las tasas de asistencia." 
+                            data-pt="Forneceu à liderança métricas claras de ROI em iniciativas de bem-estar e engajamento, rastreando seu impacto nas taxas de comparecimento.">Provided leadership with clear ROI metrics on wellness and engagement initiatives by tracking their impact on attendance rates.</li>
+                        
+                        <li data-en="Estimated cost savings of approximately $200,000 annually through reduced absenteeism and more efficient resource allocation." 
+                            data-es="Ahorros de costos estimados de aproximadamente $200,000 anualmente a través de la reducción del ausentismo y una asignación de recursos más eficiente." 
+                            data-pt="Economia de custos estimada em aproximadamente $200.000 anualmente por meio da redução do absenteísmo e alocação mais eficiente de recursos.">Estimated cost savings of approximately $200,000 annually through reduced absenteeism and more efficient resource allocation.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============ Language Selector - Improved ============
+            const langBtn = document.getElementById('langBtn');
+            const langSelector = document.querySelector('.language-selector');
+            const langOptions = document.querySelectorAll('.lang-option');
+            const currentLangText = document.getElementById('currentLang');
+            
+            // Make language menu stay open when clicking the button
+            langBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSelector.classList.toggle('active');
+            });
+            
+            // Close language menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!langSelector.contains(e.target)) {
+                    langSelector.classList.remove('active');
+                }
+            });
+            
+            // Check for saved language
+            const savedLang = localStorage.getItem('portfolio-lang') || 'en';
+            document.documentElement.lang = savedLang;
+            
+            // Get all elements with language attributes
+            const langElements = document.querySelectorAll('[data-en], [data-pt], [data-es]');
+            
+            // Set initial active language
+            langOptions.forEach(option => {
+                const lang = option.getAttribute('data-lang');
+                if (lang === savedLang) {
+                    option.classList.add('active');
+                    currentLangText.textContent = option.querySelector('span').textContent;
+                }
+            });
+            
+            // Update content based on saved language
+            updateLanguageContent(savedLang);
+            
+            // Language option click handler
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Update active option
+                    langOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current language text
+                    currentLangText.textContent = this.querySelector('span').textContent;
+                    
+                    // Update all content
+                    updateLanguageContent(lang);
+                    
+                    // Update html lang attribute
+                    document.documentElement.lang = lang;
+                    
+                    // Save language preference
+                    localStorage.setItem('portfolio-lang', lang);
+                    
+                    // Close the menu
+                    langSelector.classList.remove('active');
+                });
+            });
+            
+            // Function to update all language content
+            function updateLanguageContent(lang) {
+                langElements.forEach(el => {
+                    if (el.hasAttribute(`data-${lang}`)) {
+                        if (el.tagName === 'LI') {
+                            el.innerHTML = el.getAttribute(`data-${lang}`);
+                        } else {
+                            el.textContent = el.getAttribute(`data-${lang}`);
+                        }
+                    }
+                });
+            }
+            
+            // ============ Theme Toggle - Dark/Light ============
+            const themeToggle = document.getElementById('themeToggle');
+            
+            // Check for saved theme
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.checked = false;
+            }
+            
+            // Theme toggle handler
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('portfolio-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('portfolio-theme', 'light');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

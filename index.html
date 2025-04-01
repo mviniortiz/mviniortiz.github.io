@@ -205,7 +205,7 @@
             border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        /* Animated background elements */
+        /* Enhanced Animated background elements */
         .animated-bg {
             position: absolute;
             top: 0;
@@ -213,15 +213,25 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            opacity: 0.1;
+            opacity: 0.2;
         }
 
         .data-particle {
             position: absolute;
             color: white;
             font-size: 0.8rem;
-            opacity: 0.7;
+            opacity: 0.8;
             animation: floatData 15s linear infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .data-particle.icon {
+            font-size: 1.5rem;
+        }
+
+        .data-particle.big {
+            font-size: 1rem;
+            font-weight: bold;
         }
 
         @keyframes floatData {
@@ -230,13 +240,47 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(-100%) translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatVertical {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatHorizontal {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(100%);
                 opacity: 0;
             }
         }
@@ -562,9 +606,15 @@
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Created</strong> visually impactful graphics using Figma and PowerPoint</li>
-                                <li><strong>Unified</strong> 9 different tables into a single table for complex measure creation</li>
-                                <li><strong>Applied</strong> Pareto Law to identify the most valuable products</li>
+                                <li data-en="<strong>Created</strong> visually impactful graphics using Figma and PowerPoint"
+                                    data-es="<strong>Creó</strong> gráficos visualmente impactantes utilizando Figma y PowerPoint"
+                                    data-pt="<strong>Criou</strong> gráficos visualmente impactantes usando Figma e PowerPoint"><strong>Created</strong> visually impactful graphics using Figma and PowerPoint</li>
+                                <li data-en="<strong>Unified</strong> 9 different tables into a single table for complex measure creation"
+                                    data-es="<strong>Unificó</strong> 9 tablas diferentes en una sola tabla para la creación de medidas complejas"
+                                    data-pt="<strong>Unificou</strong> 9 tabelas diferentes em uma única tabela para criação de medidas complexas"><strong>Unified</strong> 9 different tables into a single table for complex measure creation</li>
+                                <li data-en="<strong>Applied</strong> Pareto Law to identify the most valuable products"
+                                    data-es="<strong>Aplicó</strong> la Ley de Pareto para identificar los productos más valiosos"
+                                    data-pt="<strong>Aplicou</strong> a Lei de Pareto para identificar os produtos mais valiosos"><strong>Applied</strong> Pareto Law to identify the most valuable products</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -575,7 +625,7 @@
                         </div>
                         <div class="project-links">
                             <a href="SalesAnalysis/" class="project-link">
-                                <i class="fas fa-info-circle"></i> Project Details
+                                <i class="fas fa-info-circle"></i> <span data-en="Project Details" data-es="Detalles del Proyecto" data-pt="Detalhes do Projeto">Project Details</span>
                             </a>
                         </div>
                     </div>
@@ -603,9 +653,15 @@
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Developed</strong> interactive visualizations tracking absenteeism by department, role, and time period</li>
-                                <li><strong>Implemented</strong> KPIs for attendance rates, absenteeism costs, and frequency distributions</li>
-                                <li><strong>Created</strong> alert systems to highlight concerning patterns and potential interventions</li>
+                                <li data-en="<strong>Developed</strong> interactive visualizations tracking absenteeism by department, role, and time period"
+                                    data-es="<strong>Desarrolló</strong> visualizaciones interactivas que rastrean el ausentismo por departamento, rol y período de tiempo"
+                                    data-pt="<strong>Desenvolveu</strong> visualizações interativas rastreando absenteísmo por departamento, função e período de tempo"><strong>Developed</strong> interactive visualizations tracking absenteeism by department, role, and time period</li>
+                                <li data-en="<strong>Implemented</strong> KPIs for attendance rates, absenteeism costs, and frequency distributions"
+                                    data-es="<strong>Implementó</strong> KPIs para tasas de asistencia, costos de ausentismo y distribuciones de frecuencia"
+                                    data-pt="<strong>Implementou</strong> KPIs para taxas de comparecimento, custos de absenteísmo e distribuições de frequência"><strong>Implemented</strong> KPIs for attendance rates, absenteeism costs, and frequency distributions</li>
+                                <li data-en="<strong>Created</strong> alert systems to highlight concerning patterns and potential interventions"
+                                    data-es="<strong>Creó</strong> sistemas de alerta para resaltar patrones preocupantes e intervenciones potenciales"
+                                    data-pt="<strong>Criou</strong> sistemas de alerta para destacar padrões preocupantes e potenciais intervenções"><strong>Created</strong> alert systems to highlight concerning patterns and potential interventions</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -617,7 +673,10 @@
                         </div>
                         <div class="project-links">
                             <a href="https://app.powerbi.com/view?r=eyJrIjoiYmI3NWIyNTEtYThkYi00YWM1LWI1Y2YtZjk0NGYyN2I5NDNhIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                                <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
+                            </a>
+                            <a href="HRAbsenteeism/" class="project-link">
+                                <i class="fas fa-info-circle"></i> <span data-en="Project Details" data-es="Detalles del Proyecto" data-pt="Detalhes do Projeto">Project Details</span>
                             </a>
                         </div>
                     </div>
@@ -635,9 +694,15 @@
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Designed</strong> intuitive performance scorecards for sales managers and executive leadership</li>
-                                <li><strong>Implemented</strong> territory mapping with geospatial analytics to visualize regional performance</li>
-                                <li><strong>Developed</strong> comparative analysis tools for benchmarking and identifying coaching opportunities</li>
+                                <li data-en="<strong>Designed</strong> intuitive performance scorecards for sales managers and executive leadership"
+                                    data-es="<strong>Diseñó</strong> tarjetas de puntuación de rendimiento intuitivas para gerentes de ventas y liderazgo ejecutivo"
+                                    data-pt="<strong>Projetou</strong> scorecards de desempenho intuitivos para gerentes de vendas e liderança executiva"><strong>Designed</strong> intuitive performance scorecards for sales managers and executive leadership</li>
+                                <li data-en="<strong>Implemented</strong> territory mapping with geospatial analytics to visualize regional performance"
+                                    data-es="<strong>Implementó</strong> mapeo de territorio con análisis geoespacial para visualizar el rendimiento regional"
+                                    data-pt="<strong>Implementou</strong> mapeamento de território com análise geoespacial para visualizar o desempenho regional"><strong>Implemented</strong> territory mapping with geospatial analytics to visualize regional performance</li>
+                                <li data-en="<strong>Developed</strong> comparative analysis tools for benchmarking and identifying coaching opportunities"
+                                    data-es="<strong>Desarrolló</strong> herramientas de análisis comparativo para evaluación comparativa e identificación de oportunidades de coaching"
+                                    data-pt="<strong>Desenvolveu</strong> ferramentas de análise comparativa para benchmarking e identificação de oportunidades de coaching"><strong>Developed</strong> comparative analysis tools for benchmarking and identifying coaching opportunities</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -649,7 +714,10 @@
                         </div>
                         <div class="project-links">
                             <a href="https://app.powerbi.com/view?r=eyJrIjoiZmYwOGMwZTYtMjA0Ny00OTk4LWI5Y2EtZGRjMjIxZGVlMmQ2IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> View Live Dashboard
+                                <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
+                            </a>
+                            <a href="SalesTeamPerformance/" class="project-link">
+                                <i class="fas fa-info-circle"></i> <span data-en="Project Details" data-es="Detalles del Proyecto" data-pt="Detalhes do Projeto">Project Details</span>
                             </a>
                         </div>
                     </div>
@@ -667,9 +735,15 @@
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Implemented</strong> multiple KPIs for sales by product, average ticket per vendor, and impact of discounts</li>
-                                <li><strong>Created</strong> dynamic visualizations for monthly, weekly, and daily perspectives</li>
-                                <li><strong>Extracted</strong> critical insights for resource allocation and business improvements</li>
+                                <li data-en="<strong>Implemented</strong> multiple KPIs for sales by product, average ticket per vendor, and impact of discounts"
+                                    data-es="<strong>Implementó</strong> múltiples KPIs para ventas por producto, ticket promedio por proveedor e impacto de descuentos"
+                                    data-pt="<strong>Implementou</strong> múltiplos KPIs para vendas por produto, ticket médio por fornecedor e impacto de descontos"><strong>Implemented</strong> multiple KPIs for sales by product, average ticket per vendor, and impact of discounts</li>
+                                <li data-en="<strong>Created</strong> dynamic visualizations for monthly, weekly, and daily perspectives"
+                                    data-es="<strong>Creó</strong> visualizaciones dinámicas para perspectivas mensuales, semanales y diarias"
+                                    data-pt="<strong>Criou</strong> visualizações dinâmicas para perspectivas mensais, semanais e diárias"><strong>Created</strong> dynamic visualizations for monthly, weekly, and daily perspectives</li>
+                                <li data-en="<strong>Extracted</strong> critical insights for resource allocation and business improvements"
+                                    data-es="<strong>Extrajo</strong> información crítica para la asignación de recursos y mejoras comerciales"
+                                    data-pt="<strong>Extraiu</strong> insights críticos para alocação de recursos e melhorias nos negócios"><strong>Extracted</strong> critical insights for resource allocation and business improvements</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -681,49 +755,7 @@
                         </div>
                         <div class="project-links">
                             <a href="BrightBuy/" class="project-link">
-                                <i class="fas fa-info-circle"></i> Project Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marketing Projects Section -->
-    <section class="projects">
-        <div class="container">
-            <h2 class="section-title" data-en="Marketing Analytics" data-es="Análisis de Marketing" data-pt="Análise de Marketing">Marketing Analytics</h2>
-            <p class="section-description" data-en="Projects focused on campaign performance, customer acquisition, and marketing ROI" data-es="Proyectos centrados en el rendimiento de campañas, adquisición de clientes y ROI de marketing" data-pt="Projetos focados em desempenho de campanhas, aquisição de clientes e ROI de marketing">Projects focused on campaign performance, customer acquisition, and marketing ROI</p>
-            
-            <div class="projects-grid">
-                <!-- Mentory Project -->
-                <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8f2c658?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Mentory Dashboard" class="project-image">
-                    <div class="project-content">
-                        <h2 class="project-title" data-en="Marketing Campaign Analysis: Mentory" data-es="Análisis de Campañas de Marketing: Mentory" data-pt="Análise de Campanhas de Marketing: Mentory">Marketing Campaign Analysis: Mentory</h2>
-                        <div class="project-description">
-                            <p data-en="Interactive marketing performance dashboard analyzing KPIs from Google Ads, TikTok Ads, and Facebook Ads for real-time campaign monitoring."
-                               data-es="Panel interactivo de rendimiento de marketing que analiza KPIs de Google Ads, TikTok Ads y Facebook Ads para monitoreo de campañas en tiempo real."
-                               data-pt="Dashboard interativo de desempenho de marketing que analisa KPIs do Google Ads, TikTok Ads e Facebook Ads para monitoramento de campanhas em tempo real.">Interactive marketing performance dashboard analyzing KPIs from Google Ads, TikTok Ads, and Facebook Ads for real-time campaign monitoring.</p>
-                        </div>
-                        <div class="project-details">
-                            <ul>
-                                <li><strong>Implemented</strong> KPIs to check the health of all campaigns running in real time</li>
-                                <li><strong>Created</strong> visually engaging dashboard with line charts, bar graphs and performance indicators</li>
-                                <li><strong>Developed</strong> a UTM tracking system to measure campaign performance</li>
-                            </ul>
-                        </div>
-                        <div class="skills-list">
-                            <span class="skill-tag"><i class="fas fa-analytics"></i> Looker Studio</span>
-                            <span class="skill-tag"><i class="fas fa-table"></i> Excel</span>
-                            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
-                            <span class="skill-tag"><i class="fas fa-robot"></i> ChatGPT</span>
-                            <span class="skill-tag"><i class="fab fa-figma"></i> Figma</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="Mentory/" class="project-link">
-                                <i class="fas fa-info-circle"></i> Project Details
+                                <i class="fas fa-info-circle"></i> <span data-en="Project Details" data-es="Detalles del Proyecto" data-pt="Detalhes do Projeto">Project Details</span>
                             </a>
                         </div>
                     </div>
@@ -819,7 +851,11 @@
             function updateLanguageContent(lang) {
                 langElements.forEach(el => {
                     if (el.hasAttribute(`data-${lang}`)) {
-                        el.textContent = el.getAttribute(`data-${lang}`);
+                        if (el.tagName === 'LI') {
+                            el.innerHTML = el.getAttribute(`data-${lang}`);
+                        } else {
+                            el.textContent = el.getAttribute(`data-${lang}`);
+                        }
                     }
                 });
             }
@@ -848,7 +884,7 @@
                 }
             });
             
-            // ============ Animated Background ============
+            // ============ Enhanced Animated Background ============
             // Create animated data elements in the background
             const animatedBg = document.getElementById('animatedBg');
             const dataWords = [
@@ -860,32 +896,75 @@
                 'Visualization', 'Business Intelligence'
             ];
             
-            // Create 20 data particles with random positions and delays
-            for (let i = 0; i < 20; i++) {
+            const dataIcons = [
+                'chart-bar', 'chart-line', 'chart-pie', 'database', 
+                'table', 'file-excel', 'code', 'brain', 'search', 
+                'analytics', 'filter', 'funnel-dollar', 'server',
+                'desktop', 'laptop-code', 'project-diagram', 'sitemap'
+            ];
+            
+            // Create 30 data particles with random positions, delays and types
+            for (let i = 0; i < 30; i++) {
                 createDataParticle();
             }
             
             function createDataParticle() {
                 const particle = document.createElement('div');
-                particle.className = 'data-particle';
-                particle.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
                 
-                // Random positioning
+                // Determine particle type
+                const particleType = Math.random();
+                
+                if (particleType < 0.3) {
+                    // Icon particle
+                    particle.className = 'data-particle icon';
+                    const randomIcon = dataIcons[Math.floor(Math.random() * dataIcons.length)];
+                    particle.innerHTML = `<i class="fas fa-${randomIcon}"></i>`;
+                } else if (particleType < 0.45) {
+                    // Bigger text particle
+                    particle.className = 'data-particle big';
+                    particle.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
+                } else {
+                    // Regular text particle
+                    particle.className = 'data-particle';
+                    particle.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
+                }
+                
+                // Random position
                 const xPos = Math.random() * 100;
+                const yPos = Math.random() * 100;
                 particle.style.left = `${xPos}%`;
                 
-                // Random animation delay
-                const delay = Math.random() * 15;
+                // Random animation type
+                const animationType = Math.random();
+                const delay = Math.random() * 20;
+                
+                if (animationType < 0.6) {
+                    // Diagonal movement
+                    particle.style.animationName = 'floatData';
+                    particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                } else if (animationType < 0.8) {
+                    // Vertical movement
+                    particle.style.animationName = 'floatVertical';
+                    particle.style.animationDuration = `${10 + Math.random() * 8}s`;
+                    particle.style.left = `${xPos}%`;
+                } else {
+                    // Horizontal movement
+                    particle.style.animationName = 'floatHorizontal';
+                    particle.style.animationDuration = `${12 + Math.random() * 8}s`;
+                    particle.style.top = `${yPos}%`;
+                }
+                
                 particle.style.animationDelay = `${delay}s`;
                 
                 // Add to the background
                 animatedBg.appendChild(particle);
                 
                 // Remove and recreate particle after animation completes
+                const duration = parseFloat(particle.style.animationDuration) * 1000;
                 setTimeout(() => {
                     particle.remove();
                     createDataParticle();
-                }, (15 + delay) * 1000);
+                }, duration + delay * 1000);
             }
 
             // Add RGB version of primary color for background opacity
