@@ -288,7 +288,7 @@
             padding: 4rem 0;
         }
 
-        /* Dashboard iframe container */
+        /* Dashboard image container */
         .dashboard-container {
             width: 100%;
             height: 650px;
@@ -300,10 +300,49 @@
             position: relative;
         }
 
-        .dashboard-iframe {
+        .dashboard-image {
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .dashboard-container:hover .dashboard-image {
+            transform: scale(1.03);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .dashboard-container:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .overlay-content {
+            max-width: 80%;
+        }
+        
+        .overlay-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .overlay-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         .section-title {
@@ -488,9 +527,15 @@
         <div class="container">
             <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> <span data-en="Back to Portfolio" data-es="Volver al Portafolio" data-pt="Voltar ao Portfólio">Back to Portfolio</span></a>
             
-            <!-- Live Dashboard Embed instead of static image -->
+            <!-- Replace Live Dashboard with Static Image -->
             <div class="dashboard-container">
-                <iframe class="dashboard-iframe" src="https://lookerstudio.google.com/embed/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" allowfullscreen></iframe>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Mentory Marketing Dashboard" class="dashboard-image">
+                <div class="image-overlay">
+                    <div class="overlay-content">
+                        <h3 data-en="Marketing Performance Dashboard" data-es="Panel de Rendimiento de Marketing" data-pt="Dashboard de Desempenho de Marketing">Marketing Performance Dashboard</h3>
+                        <p data-en="Interactive visualization of cross-platform marketing KPIs" data-es="Visualización interactiva de KPIs de marketing multiplataforma" data-pt="Visualização interativa de KPIs de marketing multiplataforma">Interactive visualization of cross-platform marketing KPIs</p>
+                    </div>
+                </div>
             </div>
             
             <section>
