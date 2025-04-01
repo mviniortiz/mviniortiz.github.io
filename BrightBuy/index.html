@@ -527,12 +527,6 @@
                 <iframe class="dashboard-iframe" src="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" allowfullscreen></iframe>
             </div>
             
-            <div class="cta-container" style="text-align: center; margin: 2rem 0;">
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="cta-button" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> <span data-en="View Live Dashboard" data-es="Ver Panel en Vivo" data-pt="Ver Dashboard ao Vivo">View Live Dashboard</span>
-                </a>
-            </div>
-            
             <section>
                 <h2 class="section-title" data-en="Project Overview" data-es="Descripción del Proyecto" data-pt="Visão Geral do Projeto">Project Overview</h2>
                 <div class="section-content">
@@ -566,36 +560,81 @@
             <section>
                 <h2 class="section-title" data-en="Technical Details" data-es="Detalles Técnicos" data-pt="Detalhes Técnicos">Technical Details</h2>
                 <ul class="summary-list">
-                    <li data-en="<strong>Data Integration:</strong> Connected multiple data sources including sales transactions, product catalog, customer information, and vendor data into a unified data model."
-                        data-es="<strong>Integración de datos:</strong> Conectó múltiples fuentes de datos, incluidas transacciones de ventas, catálogo de productos, información del cliente y datos de proveedores en un modelo de datos unificado."
-                        data-pt="<strong>Integração de dados:</strong> Conectou várias fontes de dados, incluindo transações de vendas, catálogo de produtos, informações de clientes e dados de fornecedores em um modelo de dados unificado."><strong>Data Integration:</strong> Connected multiple data sources including sales transactions, product catalog, customer information, and vendor data into a unified data model.</li>
-                    <li data-en="<strong>ETL Process:</strong> Implemented robust ETL processes to clean, transform, and normalize data for advanced analysis."
-                        data-es="<strong>Proceso ETL:</strong> Implementó procesos ETL robustos para limpiar, transformar y normalizar datos para análisis avanzado."
-                        data-pt="<strong>Processo ETL:</strong> Implementou processos ETL robustos para limpar, transformar e normalizar dados para análise avançada."><strong>ETL Process:</strong> Implemented robust ETL processes to clean, transform, and normalize data for advanced analysis.</li>
-                    <li data-en="<strong>Advanced DAX:</strong> Created complex DAX measures and calculated columns to derive business metrics and KPIs."
-                        data-es="<strong>DAX avanzado:</strong> Creó medidas DAX complejas y columnas calculadas para derivar métricas comerciales y KPIs."
-                        data-pt="<strong>DAX avançado:</strong> Criou medidas DAX complexas e colunas calculadas para derivar métricas de negócios e KPIs."><strong>Advanced DAX:</strong> Created complex DAX measures and calculated columns to derive business metrics and KPIs.</li>
-                    <li data-en="<strong>Interactive Elements:</strong> Implemented slicers, filters, and bookmarks for enhanced user interaction and deeper data exploration."
-                        data-es="<strong>Elementos interactivos:</strong> Implementó segmentaciones, filtros y marcadores para una mejor interacción del usuario y una exploración de datos más profunda."
-                        data-pt="<strong>Elementos interativos:</strong> Implementou segmentações, filtros e marcadores para melhor interação do usuário e exploração mais profunda dos dados."><strong>Interactive Elements:</strong> Implemented slicers, filters, and bookmarks for enhanced user interaction and deeper data exploration.</li>
+                    <li data-en="Data Integration: Connected multiple data sources including sales transactions, product catalog, customer information, and vendor data into a unified data model."
+                        data-es="Integración de datos: Conectó múltiples fuentes de datos, incluidas transacciones de ventas, catálogo de productos, información del cliente y datos de proveedores en un modelo de datos unificado."
+                        data-pt="Integração de dados: Conectou várias fontes de dados, incluindo transações de vendas, catálogo de produtos, informações de clientes e dados de fornecedores em um modelo de dados unificado.">Data Integration: Connected multiple data sources including sales transactions, product catalog, customer information, and vendor data into a unified data model.</li>
+                    <li data-en="ETL Process: Implemented robust ETL processes to clean, transform, and normalize data for advanced analysis."
+                        data-es="Proceso ETL: Implementó procesos ETL robustos para limpiar, transformar y normalizar datos para análisis avanzado."
+                        data-pt="Processo ETL: Implementou processos ETL robustos para limpar, transformar e normalizar dados para análise avançada.">ETL Process: Implemented robust ETL processes to clean, transform, and normalize data for advanced analysis.</li>
+                    <li data-en="Advanced DAX: Created complex DAX measures and calculated columns to derive business metrics and KPIs."
+                        data-es="DAX avanzado: Creó medidas DAX complejas y columnas calculadas para derivar métricas comerciales y KPIs."
+                        data-pt="DAX avançado: Criou medidas DAX complexas e colunas calculadas para derivar métricas de negócios e KPIs.">Advanced DAX: Created complex DAX measures and calculated columns to derive business metrics and KPIs.</li>
+                    <li data-en="Interactive Elements: Implemented slicers, filters, and bookmarks for enhanced user interaction and deeper data exploration."
+                        data-es="Elementos interactivos: Implementó segmentaciones, filtros y marcadores para una mejor interacción del usuario y una exploración de datos más profunda."
+                        data-pt="Elementos interativos: Implementou segmentações, filtros e marcadores para melhor interação do usuário e exploração mais profunda dos dados.">Interactive Elements: Implemented slicers, filters, and bookmarks for enhanced user interaction and deeper data exploration.</li>
+                    <li data-en="Incremental Refresh: Set up automated data refresh pipelines that update only new or modified data, ensuring optimal performance with large datasets."
+                        data-es="Actualización incremental: Configuró canalizaciones de actualización de datos automatizadas que actualizan solo datos nuevos o modificados, garantizando un rendimiento óptimo con conjuntos de datos grandes."
+                        data-pt="Atualização incremental: Configurou pipelines automatizados de atualização de dados que atualizam apenas dados novos ou modificados, garantindo desempenho ideal com grandes conjuntos de dados.">Incremental Refresh: Set up automated data refresh pipelines that update only new or modified data, ensuring optimal performance with large datasets.</li>
+                    <li data-en="Mobile Optimization: Designed responsive visuals and layouts that automatically adapt to different screen sizes for on-the-go access to critical business metrics."
+                        data-es="Optimización móvil: Diseñó visualizaciones y diseños receptivos que se adaptan automáticamente a diferentes tamaños de pantalla para acceder a métricas comerciales críticas sobre la marcha."
+                        data-pt="Otimização para dispositivos móveis: Projetou visuais e layouts responsivos que se adaptam automaticamente a diferentes tamanhos de tela para acesso às métricas críticas de negócios em qualquer lugar.">Mobile Optimization: Designed responsive visuals and layouts that automatically adapt to different screen sizes for on-the-go access to critical business metrics.</li>
                 </ul>
+                
+                <div class="technologies" style="margin-top: 2rem;">
+                    <h3 data-en="Technologies Used" data-es="Tecnologías Utilizadas" data-pt="Tecnologias Utilizadas" style="margin-bottom: 1.5rem; color: var(--primary-color);">Technologies Used</h3>
+                    <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.5rem;">
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-chart-bar"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">Power BI</div>
+                        </div>
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-database"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">SQL Server</div>
+                        </div>
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-code"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">DAX</div>
+                        </div>
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-project-diagram"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">Data Modeling</div>
+                        </div>
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-table"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">Power Query</div>
+                        </div>
+                        <div class="tech-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+                            <div class="tech-icon" style="font-size: 2.5rem; color: var(--primary-color);"><i class="fas fa-sync-alt"></i></div>
+                            <div class="tech-name" style="font-weight: 500; font-size: 1rem;">Power BI Service</div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section>
                 <h2 class="section-title" data-en="Business Impact" data-es="Impacto Empresarial" data-pt="Impacto nos Negócios">Business Impact</h2>
                 <ul class="summary-list">
-                    <li data-en="<strong>Sales Optimization:</strong> Increased sales by 15% through better identification of top-performing products and focused marketing efforts."
-                        data-es="<strong>Optimización de ventas:</strong> Aumentó las ventas en un 15% mediante una mejor identificación de productos de alto rendimiento y esfuerzos de marketing focalizados."
-                        data-pt="<strong>Otimização de vendas:</strong> Aumentou as vendas em 15% através de melhor identificação de produtos de alto desempenho e esforços de marketing focados."><strong>Sales Optimization:</strong> Increased sales by 15% through better identification of top-performing products and focused marketing efforts.</li>
-                    <li data-en="<strong>Inventory Management:</strong> Reduced stockouts by 40% and excess inventory costs by 25% through improved demand forecasting."
-                        data-es="<strong>Gestión de inventario:</strong> Redujo las fallas de stock en un 40% y los costos de exceso de inventario en un 25% mediante una mejor previsión de la demanda."
-                        data-pt="<strong>Gestão de estoque:</strong> Reduziu as faltas de estoque em 40% e os custos de excesso de estoque em 25% através de melhor previsão de demanda."><strong>Inventory Management:</strong> Reduced stockouts by 40% and excess inventory costs by 25% through improved demand forecasting.</li>
-                    <li data-en="<strong>Vendor Performance:</strong> Optimized supplier relationships by identifying the most reliable and cost-effective vendors, improving delivery times by 30%."
-                        data-es="<strong>Rendimiento de proveedores:</strong> Optimizó las relaciones con los proveedores identificando a los más fiables y rentables, mejorando los tiempos de entrega en un 30%."
-                        data-pt="<strong>Desempenho de fornecedores:</strong> Otimizou relacionamentos com fornecedores identificando os mais confiáveis e econômicos, melhorando os tempos de entrega em 30%."><strong>Vendor Performance:</strong> Optimized supplier relationships by identifying the most reliable and cost-effective vendors, improving delivery times by 30%.</li>
-                    <li data-en="<strong>Decision Making:</strong> Reduced decision-making time for executive leadership by 50% through readily available, actionable insights."
-                        data-es="<strong>Toma de decisiones:</strong> Redujo el tiempo de toma de decisiones para el liderazgo ejecutivo en un 50% a través de información accionable y disponible."
-                        data-pt="<strong>Tomada de decisão:</strong> Reduziu o tempo de tomada de decisão para a liderança executiva em 50% através de insights acionáveis prontamente disponíveis."><strong>Decision Making:</strong> Reduced decision-making time for executive leadership by 50% through readily available, actionable insights.</li>
+                    <li data-en="Sales Optimization: Increased sales by 15% through better identification of top-performing products and focused marketing efforts."
+                        data-es="Optimización de ventas: Aumentó las ventas en un 15% mediante una mejor identificación de productos de alto rendimiento y esfuerzos de marketing focalizados."
+                        data-pt="Otimização de vendas: Aumentou as vendas em 15% através de melhor identificação de produtos de alto desempenho e esforços de marketing focados.">Sales Optimization: Increased sales by 15% through better identification of top-performing products and focused marketing efforts.</li>
+                    <li data-en="Inventory Management: Reduced stockouts by 40% and excess inventory costs by 25% through improved demand forecasting."
+                        data-es="Gestión de inventario: Redujo las fallas de stock en un 40% y los costos de exceso de inventario en un 25% mediante una mejor previsión de la demanda."
+                        data-pt="Gestão de estoque: Reduziu as faltas de estoque em 40% e os custos de excesso de estoque em 25% através de melhor previsão de demanda.">Inventory Management: Reduced stockouts by 40% and excess inventory costs by 25% through improved demand forecasting.</li>
+                    <li data-en="Vendor Performance: Optimized supplier relationships by identifying the most reliable and cost-effective vendors, improving delivery times by 30%."
+                        data-es="Rendimiento de proveedores: Optimizó las relaciones con los proveedores identificando a los más fiables y rentables, mejorando los tiempos de entrega en un 30%."
+                        data-pt="Desempenho de fornecedores: Otimizou relacionamentos com fornecedores identificando os mais confiáveis e econômicos, melhorando os tempos de entrega em 30%.">Vendor Performance: Optimized supplier relationships by identifying the most reliable and cost-effective vendors, improving delivery times by 30%.</li>
+                    <li data-en="Decision Making: Reduced decision-making time for executive leadership by 50% through readily available, actionable insights."
+                        data-es="Toma de decisiones: Redujo el tiempo de toma de decisiones para el liderazgo ejecutivo en un 50% a través de información accionable y disponible."
+                        data-pt="Tomada de decisão: Reduziu o tempo de tomada de decisão para a liderança executiva em 50% através de insights acionáveis prontamente disponíveis.">Decision Making: Reduced decision-making time for executive leadership by 50% through readily available, actionable insights.</li>
+                    <li data-en="Revenue Growth: Achieved a 22% increase in overall revenue within the first year of implementation through data-driven strategic decisions."
+                        data-es="Crecimiento de ingresos: Logró un aumento del 22% en los ingresos generales dentro del primer año de implementación a través de decisiones estratégicas basadas en datos."
+                        data-pt="Crescimento da receita: Alcançou um aumento de 22% na receita geral no primeiro ano de implementação por meio de decisões estratégicas baseadas em dados.">Revenue Growth: Achieved a 22% increase in overall revenue within the first year of implementation through data-driven strategic decisions.</li>
+                    <li data-en="Customer Retention: Improved customer retention rates by 18% by identifying at-risk customers and implementing targeted engagement strategies."
+                        data-es="Retención de clientes: Mejoró las tasas de retención de clientes en un 18% al identificar clientes en riesgo e implementar estrategias de compromiso específicas."
+                        data-pt="Retenção de clientes: Melhorou as taxas de retenção de clientes em 18% identificando clientes em risco e implementando estratégias de engajamento direcionadas.">Customer Retention: Improved customer retention rates by 18% by identifying at-risk customers and implementing targeted engagement strategies.</li>
+                    <li data-en="Cost Efficiency: Generated approximately $350,000 in annual cost savings through optimized operations and resource allocation."
+                        data-es="Eficiencia de costos: Generó aproximadamente $350,000 en ahorros de costos anuales a través de operaciones optimizadas y asignación de recursos."
+                        data-pt="Eficiência de custos: Gerou aproximadamente $350.000 em economia anual de custos por meio de operações otimizadas e alocação de recursos.">Cost Efficiency: Generated approximately $350,000 in annual cost savings through optimized operations and resource allocation.</li>
                 </ul>
             </section>
         </div>
