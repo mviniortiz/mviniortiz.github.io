@@ -1,0 +1,31 @@
+theme: jekyll-theme-cayman
+title: Markus Vinicius - Data Analyst Portfolio
+description: Showcasing data analysis projects and visualizations
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# Social media links
+author:
+  name: Markus Vinicius
+  email: mviniciusortiz48@gmail.com
+  linkedin: https://www.linkedin.com/in/mviniortiz/
+  whatsapp: https://wa.me/5548991696887
+
+# Custom colors and styling
+colors:
+  header: "#2c3e50"
+  accent: "#3498db"
+  text: "#333333"
+  background: "#ffffff"
+
+# Navigation links
+navigation:
+  - title: Home
+    url: /
+  - title: Projects
+    url: /projects
+  - title: About
+    url: /about
+  - title: Contact
+    url: /contact 
