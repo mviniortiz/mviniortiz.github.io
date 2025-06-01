@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cores adaptáveis ao tema com gradientes modernos
     const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)';
     const labelColor = isDarkMode ? '#ffffff' : '#1f2937';
-    const accentColor = isDarkMode ? '#3b82f6' : '#2563eb'; // Azul moderno
-    const secondaryColor = isDarkMode ? '#8b5cf6' : '#7c3aed'; // Roxo elegante
+    const accentColor = isDarkMode ? '#ef4444' : '#dc2626'; // Vermelho moderno
+    const secondaryColor = isDarkMode ? '#f97316' : '#ea580c'; // Laranja elegante
     
     // Criar gradiente para o fundo do radar
     const canvas = ctx.getContext('2d');
     const gradient = canvas.createRadialGradient(0, 0, 0, 0, 0, 200);
-    gradient.addColorStop(0, isDarkMode ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.2)');
-    gradient.addColorStop(0.5, isDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(124, 58, 237, 0.15)');
-    gradient.addColorStop(1, isDarkMode ? 'rgba(59, 130, 246, 0.1)' : 'rgba(37, 99, 235, 0.05)');
+    gradient.addColorStop(0, isDarkMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(220, 38, 38, 0.2)');
+    gradient.addColorStop(0.5, isDarkMode ? 'rgba(249, 115, 22, 0.2)' : 'rgba(234, 88, 12, 0.15)');
+    gradient.addColorStop(1, isDarkMode ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.05)');
     
     // Gradiente para a borda
     const borderGradient = canvas.createRadialGradient(0, 0, 0, 0, 0, 200);
@@ -141,141 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             display: false
           },
           tooltip: {
-            enabled: true,
-            mode: 'point',
-            intersect: true,
-            position: 'nearest',
-            backgroundColor: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.98)',
-            titleColor: isDarkMode ? '#ffffff' : '#1e293b',
-            bodyColor: isDarkMode ? '#e2e8f0' : '#475569',
-            borderColor: accentColor,
-            borderWidth: 2,
-            cornerRadius: 16,
-            padding: 20,
-            displayColors: false,
-            titleFont: {
-              size: 15,
-              weight: 'bold',
-              family: 'Poppins'
-            },
-            bodyFont: {
-              size: 13,
-              family: 'Poppins'
-            },
-            animation: {
-              duration: 300,
-              easing: 'easeOutQuart'
-            },
-            external: function(context) {
-              // Tooltip Element
-              let tooltipEl = document.getElementById('chartjs-tooltip');
-              
-              // Create element on first render
-              if (!tooltipEl) {
-                tooltipEl = document.createElement('div');
-                tooltipEl.id = 'chartjs-tooltip';
-                tooltipEl.innerHTML = '<table></table>';
-                document.body.appendChild(tooltipEl);
-              }
-              
-              // Hide if no tooltip
-              const tooltipModel = context.tooltip;
-              if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                tooltipEl.style.visibility = 'hidden';
-                return;
-              }
-              
-              // Show tooltip
-              tooltipEl.style.visibility = 'visible';
-              
-              // Set caret Position
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
-              
-              function getBody(bodyItem) {
-                return bodyItem.lines;
-              }
-              
-              // Set Text
-              if (tooltipModel.body) {
-                const titleLines = tooltipModel.title || [];
-                const bodyLines = tooltipModel.body.map(getBody);
-                
-                let innerHtml = '<thead>';
-                
-                titleLines.forEach(function(title) {
-                  innerHtml += '<tr><th>' + title + '</th></tr>';
-                });
-                innerHtml += '</thead><tbody>';
-                
-                bodyLines.forEach(function(body, i) {
-                  const colors = tooltipModel.labelColors[i];
-                  let style = 'background:' + colors.backgroundColor;
-                  style += '; border-color:' + colors.borderColor;
-                  style += '; border-width: 2px';
-                  const span = '<span style="' + style + '"></span>';
-                  innerHtml += '<tr><td>' + span + body + '</td></tr>';
-                });
-                innerHtml += '</tbody>';
-                
-                let tableRoot = tooltipEl.querySelector('table');
-                tableRoot.innerHTML = innerHtml;
-              }
-              
-              // `this` will be the overall tooltip
-              const position = context.chart.canvas.getBoundingClientRect();
-              const bodyFont = Chart.helpers.toFont(tooltipModel.options.bodyFont);
-              
-              // Display, position, and set styles for font
-              tooltipEl.style.opacity = 1;
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + 'px';
-              tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + 'px';
-              tooltipEl.style.font = bodyFont.string;
-              tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
-              tooltipEl.style.pointerEvents = 'none';
-              tooltipEl.style.backgroundColor = isDarkMode ? 'rgba(15, 23, 42, 0.98)' : 'rgba(255, 255, 255, 0.98)';
-              tooltipEl.style.borderRadius = '16px';
-              tooltipEl.style.border = `2px solid ${accentColor}`;
-              tooltipEl.style.boxShadow = isDarkMode ? 
-                '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.2)' : 
-                '0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(37, 99, 235, 0.2)';
-              tooltipEl.style.zIndex = '1000';
-              tooltipEl.style.maxWidth = '320px';
-              tooltipEl.style.color = isDarkMode ? '#ffffff' : '#1e293b';
-              tooltipEl.style.backdropFilter = 'blur(12px)';
-              tooltipEl.style.webkitBackdropFilter = 'blur(12px)';
-            },
-            callbacks: {
-              title: function(context) {
-                const skillName = context[0].label;
-                return skillName;
-              },
-              label: function(context) {
-                return '';
-              },
-              afterLabel: function(context) {
-                const skillName = context.label;
-                const skill = skillsInfo[skillName];
-                if (skill) {
-                  const lines = [];
-                  lines.push(`Nível: ${skill.level}%`);
-                  lines.push(`Descrição: ${skill.description}`);
-                  lines.push('');
-                  lines.push('Projetos:');
-                  skill.projects.forEach(project => {
-                    lines.push(`• ${project}`);
-                  });
-                  return lines;
-                }
-                return [`Nível: ${context.parsed.r}%`];
-              }
-            }
+            enabled: false
           }
         },
         scales: {
@@ -331,30 +197,9 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         interaction: {
           intersect: false,
-          mode: 'nearest'
+          mode: 'none'
         },
-        onHover: (event, activeElements, chart) => {
-          ctx.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
-          
-          // Efeito de hover nos pontos
-          if (activeElements.length > 0) {
-            const activeElement = activeElements[0];
-            const dataset = chart.data.datasets[activeElement.datasetIndex];
-            
-            // Criar efeito de pulsação no ponto ativo
-            chart.canvas.style.filter = 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.6))';
-          } else {
-            chart.canvas.style.filter = 'none';
-            
-            // Limpar tooltip quando não há elementos ativos
-            const tooltipEl = document.getElementById('chartjs-tooltip');
-            if (tooltipEl) {
-              tooltipEl.style.opacity = '0';
-              tooltipEl.style.visibility = 'hidden';
-              tooltipEl.style.pointerEvents = 'none';
-            }
-          }
-        }
+
       }
     };
     
