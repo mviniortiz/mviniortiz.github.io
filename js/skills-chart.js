@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
         pointHoverBackgroundColor: '#ffffff',
         pointHoverBorderColor: accentColor,
         pointHoverBorderWidth: 4,
-        pointRadius: isMobile ? 6 : 8,
-        pointHoverRadius: isMobile ? 8 : 12,
+        pointRadius: isMobile ? 7 : 10,
+        pointHoverRadius: isMobile ? 10 : 15,
         tension: 0.1,
         fill: true
       }]
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
               color: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.4)',
               font: {
                 family: 'Poppins',
-                size: isMobile ? 8 : 10,
+                size: isMobile ? 10 : 12,
                 weight: '400'
               },
               z: 1
@@ -315,10 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
               color: labelColor,
               font: {
                 family: 'Poppins',
-                size: isMobile ? 11 : 13,
+                size: isMobile ? 12 : 15,
                 weight: '600'
               },
-              padding: isMobile ? 25 : 30,
+              padding: isMobile ? 35 : 45,
               callback: function(value) {
                 // Quebrar labels longos em múltiplas linhas
                 if (value.length > 8) {

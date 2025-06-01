@@ -94,12 +94,34 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Prevent double-tap zoom on buttons
-        const buttons = document.querySelectorAll('button, .btn, .project-link, .contact-link');
+        // Prevent double-tap zoom on buttons (excluding project links)
+        const buttons = document.querySelectorAll('button, .btn, .contact-link');
         buttons.forEach(button => {
             button.addEventListener('touchend', function(e) {
                 e.preventDefault();
                 this.click();
+            });
+        });
+        
+        // Special handling for project links to ensure they work on mobile
+        const projectLinks = document.querySelectorAll('.project-link');
+        projectLinks.forEach(link => {
+            link.addEventListener('touchstart', function(e) {
+                this.style.transform = 'scale(0.95)';
+                this.style.transition = 'transform 0.1s ease';
+            });
+            
+            link.addEventListener('touchend', function(e) {
+                this.style.transform = '';
+                // Allow default behavior for external links
+                if (this.getAttribute('target') === '_blank') {
+                    // Let the browser handle the link naturally
+                    return true;
+                }
+            });
+            
+            link.addEventListener('touchcancel', function(e) {
+                this.style.transform = '';
             });
         });
     }
@@ -164,11 +186,26 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 // Add loading state
                 this.style.opacity = '0.7';
+                
+                // For mobile devices, ensure the link opens properly
+                if ('ontouchstart' in window) {
+                    // Small delay to ensure touch events are processed
+                    setTimeout(() => {
+                        if (this.href && this.href.startsWith('http')) {
+                            window.open(this.href, '_blank', 'noopener,noreferrer');
+                        }
+                    }, 100);
+                }
+                
                 setTimeout(() => {
                     this.style.opacity = '';
                 }, 1000);
             } catch (error) {
                 console.warn('Error handling external link:', error);
+                // Fallback: try to open the link directly
+                if (this.href) {
+                    window.open(this.href, '_blank', 'noopener,noreferrer');
+                }
             }
         });
     });
