@@ -95,11 +95,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Prevent double-tap zoom on buttons (excluding project links)
-        const buttons = document.querySelectorAll('button, .btn, .contact-link');
+        const buttons = document.querySelectorAll('button, .btn');
         buttons.forEach(button => {
             button.addEventListener('touchend', function(e) {
                 e.preventDefault();
                 this.click();
+            });
+        });
+        
+        // Special handling for contact links to prevent interference
+        const contactLinks = document.querySelectorAll('.contact-link');
+        contactLinks.forEach(link => {
+            link.addEventListener('touchend', function(e) {
+                // Don't prevent default for contact links
+                // Let them work naturally
             });
         });
         
@@ -187,14 +196,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Add loading state
                 this.style.opacity = '0.7';
                 
-                // For mobile devices, ensure the link opens properly
+                // For mobile devices, let the browser handle the link naturally
                 if ('ontouchstart' in window) {
-                    // Small delay to ensure touch events are processed
+                    // Don't prevent default or interfere with mobile link handling
+                    // Just add visual feedback
                     setTimeout(() => {
-                        if (this.href && this.href.startsWith('http')) {
-                            window.open(this.href, '_blank', 'noopener,noreferrer');
-                        }
-                    }, 100);
+                        this.style.opacity = '';
+                    }, 300);
+                    return; // Let browser handle the link
                 }
                 
                 setTimeout(() => {
@@ -202,10 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 1000);
             } catch (error) {
                 console.warn('Error handling external link:', error);
-                // Fallback: try to open the link directly
-                if (this.href) {
-                    window.open(this.href, '_blank', 'noopener,noreferrer');
-                }
+                // Let browser handle the link naturally
             }
         });
     });

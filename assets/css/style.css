@@ -216,6 +216,12 @@ header {
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    /* Mobile link optimizations */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .contact-link:hover {
@@ -681,6 +687,12 @@ header {
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
+    /* Mobile link optimizations */
+    -webkit-tap-highlight-color: rgba(220, 38, 38, 0.3);
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .project-link:hover {
@@ -1531,7 +1543,13 @@ header {
         border-radius: 12px;
         min-height: 44px;
         touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: rgba(220, 38, 38, 0.3);
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        /* Ensure links work on mobile */
+        position: relative;
+        z-index: 10;
     }
     
     .project-description p {
@@ -1563,6 +1581,14 @@ header {
     .contact-link {
         padding: 8px 12px;
         font-size: 0.8rem;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        /* Ensure links work on mobile */
+        position: relative;
+        z-index: 10;
     }
     
     .theme-switcher {
