@@ -1,0 +1,31 @@
+// Variáveis
+$primary-color: #dc2626;
+$secondary-color: #991b1b;
+$background-color: #0f172a;
+$card-bg-color: #1e293b;
+$text-color: #f8fafc;
+
+// Mixins
+@mixin card-hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba($primary-color, 0.4);
+  border-color: $primary-color;
+}
+
+// Estilos base
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+// Cards de projeto
+.project-card {
+  background: $card-bg-color;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    @include card-hover;
+  }
+}

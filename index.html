@@ -1,551 +1,69 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markus Vinicius Ortiz - Portfólio de Analista de Dados</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Vinícius Oliveira - Analista de Dados</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #dc2626;
-            --secondary-color: #991b1b;
-            --accent-color: #ef4444;
-            --text-color: #f8fafc;
-            --text-light: #cbd5e1;
-            --background-color: #0f172a;
-            --card-bg-color: #1e293b;
-            --border-color: #334155;
-            --shadow-color: rgba(220, 38, 38, 0.2);
-            --hover-color: rgba(220, 38, 38, 0.1);
-            --gradient-start: #991b1b;
-            --gradient-end: #dc2626;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--background-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Intro Section */
-        .intro {
-            padding: 3rem 0;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .section-description {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            color: var(--text-light);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg-color);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.4);
-            border-color: var(--primary-color);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .project-details ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-details li {
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .project-details li::before {
-            content: "▶";
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(220, 38, 38, 0.2);
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: rgba(220, 38, 38, 0.3);
-            transform: scale(1.05);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--card-bg-color);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .project-links {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toastMessage">Bem-vindo ao meu portfólio!</span>
+    </div>
+    
+    <!-- Floating Action Button -->
+    <button class="fab pulse-on-hover" id="fab" title="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
     <header>
+        <!-- Background Elements -->
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+                <div class="shape shape-6"></div>
+            </div>
+            <div class="grid-overlay"></div>
+            <div class="gradient-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
+            </div>
+        </div>
+        
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Markus Vinicius Ortiz</h1>
-                <p class="hero-subtitle">Analista de Dados e Especialista em Business Intelligence</p>
+                <img src="./profilepic/Sem título.png" alt="Markus Vinicius Ortiz" class="profile-avatar fade-in">
+                <h1 class="hero-title fade-in">Markus Vinicius Ortiz</h1>
+                <p class="hero-subtitle fade-in">Transformo dados complexos em decisões estratégicas que impulsionam resultados de negócio</p>
+                
+                <!-- Seção de resumo integrada -->
+                <div class="hero-summary fade-in">
+                    <p>Especialista em Business Intelligence com <strong>+3 anos</strong> transformando dados em vantagem competitiva. Minha expertise em análise avançada e visualização de dados já gerou <strong>milhões em economia</strong> e <strong>40% de aumento na eficiência</strong> de tomada de decisões para empresas de diversos setores.</p>
+                </div>
+                
+                <!-- Adicionar botão de tema aqui -->
+                <button id="theme-switcher" class="theme-switcher">
+                    <i class="fas fa-sun"></i>
+                </button>
+                
                 <div class="contact-links">
                     <a href="https://www.linkedin.com/in/mviniortiz/" class="contact-link" target="_blank">
                         <i class="fab fa-linkedin"></i> LinkedIn
@@ -556,36 +74,210 @@
                     <a href="mailto:mviniciusortiz48@gmail.com" class="contact-link">
                         <i class="fas fa-envelope"></i> Email
                     </a>
+                    <a href="./assets/documents/resume.pdf.pdf" class="contact-link" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Currículo
+                    </a>
                 </div>
             </div>
         </div>
+        <div class="hero-background"></div>
     </header>
 
-    <section class="intro">
+
+
+    <!-- Seção de habilidades movida para antes dos projetos -->
+    <section class="skills slide-in-right">
         <div class="container">
-            <p>Bem-vindo ao meu portfólio! Aqui você pode explorar os projetos de análise de dados e business intelligence que criei, demonstrando minhas habilidades em visualização, modelagem de dados e extração de insights acionáveis.</p>
+            <h2 class="section-title fade-in">Habilidades Técnicas</h2>
+            <p class="section-description fade-in">Domínio completo das principais tecnologias e ferramentas para análise de dados e business intelligence:</p>
+            
+            <div class="skills-content">
+                <div class="skills-text">
+                    <p>Minhas principais competências técnicas incluem um amplo conjunto de ferramentas para análise de dados e business intelligence. Passe o mouse sobre o radar chart ao lado para ver detalhes sobre cada habilidade e os projetos onde foram aplicadas:</p>
+                    <div class="skills-carousel">
+                        <div class="skills-carousel-container">
+                            <div class="skill-card active">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="2" y="6" width="28" height="20" rx="2" fill="#F2C811"/>
+                                        <rect x="4" y="8" width="8" height="6" rx="1" fill="#323130"/>
+                                        <rect x="14" y="8" width="14" height="2" rx="1" fill="#323130"/>
+                                        <rect x="14" y="12" width="10" height="2" rx="1" fill="#323130"/>
+                                        <rect x="4" y="16" width="24" height="8" rx="1" fill="#323130"/>
+                                        <rect x="6" y="18" width="4" height="4" rx="0.5" fill="#F2C811"/>
+                                        <rect x="12" y="18" width="4" height="4" rx="0.5" fill="#F2C811"/>
+                                        <rect x="18" y="18" width="4" height="4" rx="0.5" fill="#F2C811"/>
+                                        <rect x="24" y="18" width="2" height="4" rx="0.5" fill="#F2C811"/>
+                                    </svg>
+                                </div>
+                                <h4>Power BI</h4>
+                                <p>Criação de dashboards interativos, relatórios executivos e visualizações avançadas para análise de dados empresariais.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#336791"/>
+                                        <path d="M8 12h16v2H8v-2zm0 4h16v2H8v-2zm0 4h12v2H8v-2z" fill="white"/>
+                                        <circle cx="10" cy="9" r="1" fill="white"/>
+                                        <circle cx="13" cy="9" r="1" fill="white"/>
+                                        <circle cx="16" cy="9" r="1" fill="white"/>
+                                        <path d="M6 6v20h20V6H6zm18 18H8V8h16v16z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <h4>SQL</h4>
+                                <p>Consultas complexas, otimização de queries, modelagem de dados e manipulação de grandes volumes de informações.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <circle cx="16" cy="16" r="14" fill="#3776AB"/>
+                                        <path d="M12.5 8c-1.5 0-2.5 1-2.5 2.5v3c0 1 .5 1.5 1.5 1.5h1v1h-1c-1.5 0-2.5 1-2.5 2.5v3c0 1.5 1 2.5 2.5 2.5h7c1.5 0 2.5-1 2.5-2.5v-3c0-1.5-1-2.5-2.5-2.5h-1v-1h1c1 0 1.5-.5 1.5-1.5v-3c0-1.5-1-2.5-2.5-2.5h-7z" fill="#FFD43B"/>
+                                        <circle cx="13" cy="12" r="1" fill="#3776AB"/>
+                                        <circle cx="19" cy="20" r="1" fill="#FFD43B"/>
+                                    </svg>
+                                </div>
+                                <h4>Python</h4>
+                                <p>Análise de dados, automação de processos, ETL, machine learning e desenvolvimento de scripts para business intelligence.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="6" width="24" height="20" rx="1" fill="#217346"/>
+                                        <rect x="6" y="8" width="20" height="2" fill="white"/>
+                                        <rect x="6" y="12" width="20" height="2" fill="white"/>
+                                        <rect x="6" y="16" width="20" height="2" fill="white"/>
+                                        <rect x="6" y="20" width="20" height="2" fill="white"/>
+                                        <rect x="8" y="10" width="2" height="12" fill="white"/>
+                                        <rect x="12" y="10" width="2" height="12" fill="white"/>
+                                        <rect x="16" y="10" width="2" height="12" fill="white"/>
+                                        <rect x="20" y="10" width="2" height="12" fill="white"/>
+                                        <rect x="24" y="10" width="2" height="12" fill="white"/>
+                                    </svg>
+                                </div>
+                                <h4>Excel</h4>
+                                <p>Modelagem financeira, análise estatística, VBA e criação de relatórios dinâmicos para suporte à decisão.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#4285F4"/>
+                                        <rect x="8" y="8" width="16" height="2" fill="white"/>
+                                        <rect x="8" y="12" width="12" height="2" fill="white"/>
+                                        <rect x="8" y="16" width="14" height="2" fill="white"/>
+                                        <rect x="8" y="20" width="10" height="2" fill="white"/>
+                                        <circle cx="24" cy="10" r="2" fill="#EA4335"/>
+                                        <circle cx="22" cy="14" r="1.5" fill="#FBBC04"/>
+                                        <circle cx="24" cy="18" r="1.5" fill="#34A853"/>
+                                    </svg>
+                                </div>
+                                <h4>Looker Studio</h4>
+                                <p>Desenvolvimento de visualizações interativas e relatórios em tempo real para análise de campanhas.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="4" fill="#F24E1E"/>
+                                        <circle cx="12" cy="12" r="4" fill="#FF7262"/>
+                                        <circle cx="20" cy="12" r="4" fill="#A259FF"/>
+                                        <circle cx="16" cy="20" r="4" fill="#1ABCFE"/>
+                                        <rect x="8" y="16" width="8" height="8" rx="4" fill="#0ACF83"/>
+                                    </svg>
+                                </div>
+                                <h4>Figma</h4>
+                                <p>Prototipagem e design de interfaces de usuário para dashboards e aplicações de BI.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#FF6900"/>
+                                        <rect x="8" y="8" width="4" height="16" rx="1" fill="white"/>
+                                        <rect x="14" y="12" width="4" height="12" rx="1" fill="white"/>
+                                        <rect x="20" y="10" width="4" height="14" rx="1" fill="white"/>
+                                        <path d="M8 8l4 4 4-4 4 4 4-4" stroke="#FF6900" stroke-width="2" fill="none"/>
+                                    </svg>
+                                </div>
+                                <h4>Pentaho</h4>
+                                <p>Integração e transformação de dados (ETL) para projetos de data warehousing.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#FF3621"/>
+                                        <circle cx="10" cy="10" r="2" fill="white"/>
+                                        <circle cx="22" cy="10" r="2" fill="white"/>
+                                        <circle cx="16" cy="16" r="3" fill="white"/>
+                                        <circle cx="10" cy="22" r="2" fill="white"/>
+                                        <circle cx="22" cy="22" r="2" fill="white"/>
+                                        <path d="M10 10l6 6m0 0l6-6m-6 6l-6 6m6-6l6 6" stroke="#FF3621" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <h4>Databricks</h4>
+                                <p>Processamento de big data e analytics avançados em ambiente cloud.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#F80000"/>
+                                        <rect x="8" y="8" width="16" height="3" fill="white"/>
+                                        <rect x="8" y="13" width="16" height="3" fill="white"/>
+                                        <rect x="8" y="18" width="16" height="3" fill="white"/>
+                                        <circle cx="26" cy="6" r="2" fill="#F80000"/>
+                                        <path d="M6 6h20v20H6V6z" stroke="white" stroke-width="1" fill="none"/>
+                                    </svg>
+                                </div>
+                                <h4>Oracle</h4>
+                                <p>Administração de banco de dados e desenvolvimento de consultas complexas.</p>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect x="4" y="4" width="24" height="24" rx="2" fill="#FDE047"/>
+                                        <circle cx="10" cy="10" r="2" fill="#1F2937"/>
+                                        <circle cx="22" cy="10" r="2" fill="#1F2937"/>
+                                        <circle cx="16" cy="16" r="2" fill="#1F2937"/>
+                                        <circle cx="10" cy="22" r="2" fill="#1F2937"/>
+                                        <circle cx="22" cy="22" r="2" fill="#1F2937"/>
+                                        <path d="M10 10l6 6m0-6l-6 6m6 0l6-6m0 6l-6-6m-6 6h12m-6-6v12" stroke="#1F2937" stroke-width="1.5"/>
+                                    </svg>
+                                </div>
+                                <h4>KNIME</h4>
+                                <p>Análise visual de dados e criação de workflows automatizados.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" data-slide="0"></span>
+                            <span class="indicator" data-slide="1"></span>
+                            <span class="indicator" data-slide="2"></span>
+                            <span class="indicator" data-slide="3"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="projects">
+    <section class="projects slide-in-left">
         <div class="container">
-            <h2 class="section-title">Dashboards Power BI</h2>
-            <p class="section-description">Dashboards de nível executivo para tomada de decisão estratégica e monitoramento de desempenho empresarial</p>
+            <h2 class="section-title fade-in">Soluções de Business Intelligence que Geram Resultados</h2>
+            <p class="section-description fade-in">Dashboards estratégicos que transformaram a forma como empresas tomam decisões, com impacto direto no crescimento e lucratividade</p>
             
             <div class="projects-grid">
                 <!-- Advanced Sales Analytics Dashboard -->
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Sales Analytics Dashboard" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Sales Analytics Dashboard" class="project-image">
                     <div class="project-content">
-                        <h2 class="project-title">Advanced Sales Analytics Dashboard</h2>
+                        <h2 class="project-title">🚀 Advanced Sales Analytics Dashboard</h2>
                         <div class="project-description">
-                            <p>Plataforma abrangente de análise de vendas que fornece insights profundos sobre tendências de receita, comportamento do cliente, desempenho de produtos e oportunidades de mercado através de visualizações interativas e KPIs em tempo real.</p>
+                            <p><strong>Dashboard completo de vendas</strong> que centraliza métricas de performance e oferece <span style="color: var(--accent-color);">insights estratégicos</span> para otimização de resultados comerciais.</p>
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Desenvolveu</strong> rastreamento interativo de receita com análise de tendências e capacidades de previsão</li>
-                                <li><strong>Implementou</strong> análise de segmentação de clientes e cálculos de valor vitalício</li>
-                                <li><strong>Criou</strong> matrizes de desempenho de produtos com insights de rentabilidade e participação de mercado</li>
+                                <li><strong>📊 Análise:</strong> Visualização de vendas por período, produto e vendedor</li>
+                                <li><strong>🎯 Segmentação:</strong> Análise de clientes e identificação de oportunidades</li>
+                                <li><strong>📈 Performance:</strong> Acompanhamento de metas e KPIs de vendas em tempo real</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -596,7 +288,7 @@
                             <span class="skill-tag"><i class="fas fa-calculator"></i> Financial Modeling</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTEyNmFkOGQtZTU5YS00MzlkLTk5MzMtYjhkOGVlOTFmNDc5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZmYwOGMwZTYtMjA0Ny00OTk4LWI5Y2EtZGRjMjIxZGVlMmQ2IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Ver Dashboard
                             </a>
                         </div>
@@ -605,25 +297,24 @@
 
                 <!-- IT Equipment & Acquisitions Dashboard -->
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="IT Equipment Dashboard" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Dashboard de Equipamentos de TI" class="project-image">
                     <div class="project-content">
-                        <h2 class="project-title">Gestão de Equipamentos e Aquisições de TI</h2>
+                        <h2 class="project-title">💻 IT Equipment & Acquisitions Dashboard</h2>
                         <div class="project-description">
-                            <p>Dashboard estratégico de gestão de ativos de TI rastreando aquisições de equipamentos, níveis de inventário, cronogramas de depreciação e otimização de orçamento para decisões informadas de investimento em tecnologia.</p>
+                            <p><strong>Sistema de controle de equipamentos</strong> que monitora <span style="color: var(--accent-color);">inventário de TI</span> e acompanha processos de aquisição de forma centralizada.</p>
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Analisou</strong> padrões de aquisição de equipamentos e alocação de orçamento entre departamentos</li>
-                                <li><strong>Implementou</strong> rastreamento de inventário com alertas automatizados para cronogramas de substituição</li>
-                                <li><strong>Desenvolveu</strong> modelos de otimização de custos para planejamento estratégico de aquisições</li>
+                                <li><strong>📦 Inventário:</strong> Controle de equipamentos por departamento e status</li>
+                                <li><strong>💰 Aquisições:</strong> Acompanhamento de solicitações e aprovações de compras</li>
+                                <li><strong>📊 Relatórios:</strong> Análise de custos e utilização de equipamentos</li>
                             </ul>
                         </div>
                         <div class="skills-list">
                             <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
+                            <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
                             <span class="skill-tag"><i class="fas fa-laptop"></i> IT Asset Management</span>
-                            <span class="skill-tag"><i class="fas fa-shopping-cart"></i> Procurement Analytics</span>
-                            <span class="skill-tag"><i class="fas fa-calculator"></i> Budget Planning</span>
-                            <span class="skill-tag"><i class="fas fa-warehouse"></i> Inventory Management</span>
+                            <span class="skill-tag"><i class="fas fa-calculator"></i> Cost Analysis</span>
                         </div>
                         <div class="project-links">
                             <a href="https://app.powerbi.com/view?r=eyJrIjoiMjAzYTM1OTAtMTM5ZC00Mzc3LTllNTQtNjI4NmEwYmVlMGI4IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
@@ -633,29 +324,29 @@
                     </div>
                 </div>
 
-                <!-- Human Resources Project -->
+                <!-- HR Dashboard -->
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="HR Analytics Dashboard" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Dashboard de RH" class="project-image">
                     <div class="project-content">
-                        <h2 class="project-title">Human Resources: Absenteeism Analysis</h2>
+                        <h2 class="project-title">👥 Dashboard de Absenteísmo e Segurança</h2>
                         <div class="project-description">
-                            <p>Dashboard completo de análise de absenteísmo em RH, fornecendo insights sobre padrões de ausência, impacto na produtividade e estratégias de retenção de funcionários.</p>
+                            <p><strong>Painel de controle para RH</strong> que monitora <span style="color: var(--accent-color);">absenteísmo</span> e <span style="color: var(--accent-color);">taxa de frequência de acidentes</span> para melhorar a gestão de pessoas.</p>
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Analisou</strong> padrões de absenteísmo por departamento, função e período</li>
-                                <li><strong>Identificou</strong> correlações entre fatores pessoais e profissionais com ausências</li>
-                                <li><strong>Desenvolveu</strong> métricas de impacto financeiro e estratégias de mitigação</li>
+                                <li><strong>📊 Absenteísmo:</strong> Análise de padrões de faltas e suas causas principais</li>
+                                <li><strong>🛡️ Segurança:</strong> Monitoramento da taxa de frequência de acidentes de trabalho</li>
+                                <li><strong>📈 Tendências:</strong> Visualização de indicadores de RH ao longo do tempo</li>
                             </ul>
                         </div>
                         <div class="skills-list">
                             <span class="skill-tag"><i class="fas fa-chart-bar"></i> PowerBI</span>
                             <span class="skill-tag"><i class="fas fa-users"></i> HR Analytics</span>
-                            <span class="skill-tag"><i class="fas fa-calendar-alt"></i> Time Analysis</span>
-                            <span class="skill-tag"><i class="fas fa-chart-pie"></i> Statistical Analysis</span>
+                            <span class="skill-tag"><i class="fas fa-shield-alt"></i> Safety Metrics</span>
+                            <span class="skill-tag"><i class="fas fa-calendar-times"></i> Absenteeism</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwolesterYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiYmI3NWIyNTEtYThkYi00YWM1LWI1Y2YtZjk0NGYyN2I5NDNhIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Ver Dashboard
                             </a>
                         </div>
@@ -664,17 +355,17 @@
 
                 <!-- Sales Team Performance -->
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Sales Performance Dashboard" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1590479773265-7464e5d48118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Sales Performance Dashboard" class="project-image">
                     <div class="project-content">
-                        <h2 class="project-title">Sales Team Performance Dashboard</h2>
+                        <h2 class="project-title">🏆 Sales Performance Accelerator</h2>
                         <div class="project-description">
-                            <p>Sistema abrangente de acompanhamento de performance de equipes de vendas, incluindo métricas individuais, metas, conversões e análise de pipeline de vendas.</p>
+                            <p><strong>Dashboard de performance comercial</strong> que analisa <span style="color: var(--accent-color);">métricas de vendas</span> e identifica oportunidades de melhoria no processo comercial.</p>
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Criou</strong> dashboards interativos para acompanhamento de metas individuais e de equipe</li>
-                                <li><strong>Implementou</strong> análise de funil de vendas e taxa de conversão por etapa</li>
-                                <li><strong>Desenvolveu</strong> sistema de ranking e gamificação para motivação da equipe</li>
+                                <li><strong>📊 Métricas:</strong> Acompanhamento de conversão e performance por vendedor</li>
+                                <li><strong>🎯 Leads:</strong> Análise de qualidade e origem dos leads de vendas</li>
+                                <li><strong>📈 Pipeline:</strong> Visualização do funil de vendas e tempo de ciclo</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -684,7 +375,7 @@
                             <span class="skill-tag"><i class="fas fa-trophy"></i> Performance Management</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiMmU5ZTM0ZGUtYTQ1Zi00OWM3LWJlNTQtNjI4NmEwYmVlMGI4IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiNTEyNmFkOGQtZTU5YS00MzlkLTk5MzMtYjhkOGVlOTFmNDc5IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Ver Dashboard
                             </a>
                         </div>
@@ -693,17 +384,17 @@
 
                 <!-- BrightBuy Project -->
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="BrightBuy Dashboard" class="project-image">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="BrightBuy Dashboard" class="project-image">
                     <div class="project-content">
-                        <h2 class="project-title">Business Intelligence Project: BrightBuy</h2>
+                        <h2 class="project-title">🛒 BrightBuy: E-commerce Intelligence</h2>
                         <div class="project-description">
-                            <p>Dashboard interativo de desempenho de vendas que analisa métricas-chave de negócios, incluindo receita, margens de lucro, segmentação de clientes e desempenho de fornecedores.</p>
+                            <p><strong>Dashboard de e-commerce</strong> que monitora <span style="color: var(--accent-color);">vendas online</span> e analisa comportamento de clientes para otimização de resultados.</p>
                         </div>
                         <div class="project-details">
                             <ul>
-                                <li><strong>Implementou</strong> múltiplos KPIs para vendas por produto, ticket médio por fornecedor e impacto de descontos</li>
-                                <li><strong>Criou</strong> visualizações dinâmicas para perspectivas mensais, semanais e diárias</li>
-                                <li><strong>Extraiu</strong> insights críticos para alocação de recursos e melhorias nos negócios</li>
+                                <li><strong>📊 Vendas:</strong> Análise de produtos mais vendidos e sazonalidade</li>
+                                <li><strong>👥 Clientes:</strong> Segmentação e análise de comportamento de compra</li>
+                                <li><strong>💰 Performance:</strong> Acompanhamento de conversão e ticket médio</li>
                             </ul>
                         </div>
                         <div class="skills-list">
@@ -714,7 +405,37 @@
                             <span class="skill-tag"><i class="fab fa-figma"></i> Figma</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiNWU5ZTM0ZGUtYTQ1Zi00OWM3LWJlNTQtNjI4NmEwYmVlMGI4IiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9" class="project-link" target="_blank">
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwMzIyYWYtYTQxZi00OTAzLWEwYzgtYWE3OGJkNDU2YmMzIiwidCI6IjMyNTU3NjRiLTdiNWItNDY0Ni1hN2I0LWJmOTU3MmM2OGFhZSJ9&pageName=88f5fd5cfe3e22b7849d" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Ver Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Generation Campaign Dashboard -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=350&q=90" alt="Lead Generation Campaign Dashboard" class="project-image">
+                    <div class="project-content">
+                        <h2 class="project-title">🎯 Lead Generation Command Center</h2>
+                        <div class="project-description">
+                            <p><strong>Central de controle de leads</strong> que monitora <span style="color: var(--accent-color);">geração e qualificação</span> de prospects para otimização do processo comercial.</p>
+                        </div>
+                        <div class="project-details">
+                            <ul>
+                                <li><strong>📊 Origem:</strong> Análise de canais de geração de leads mais eficazes</li>
+                                <li><strong>🎯 Qualificação:</strong> Sistema de scoring e classificação de prospects</li>
+                                <li><strong>📈 Conversão:</strong> Acompanhamento da jornada do lead até a venda</li>
+                            </ul>
+                        </div>
+                        <div class="skills-list">
+                            <span class="skill-tag"><i class="fas fa-chart-bar"></i> Looker Studio</span>
+                            <span class="skill-tag"><i class="fas fa-bullseye"></i> Lead Generation</span>
+                            <span class="skill-tag"><i class="fas fa-chart-line"></i> Real-time KPIs</span>
+                            <span class="skill-tag"><i class="fas fa-dollar-sign"></i> ROI Analysis</span>
+                            <span class="skill-tag"><i class="fas fa-users"></i> Avatar Research</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://lookerstudio.google.com/u/1/reporting/fc732a2b-2610-403c-abbd-62a9c21c6f9e/page/UqNbD" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Ver Dashboard
                             </a>
                         </div>
@@ -724,9 +445,11 @@
         </div>
     </section>
 
+
+
     <footer>
         <div class="container">
-            <p>&copy; 2024 Markus Vinicius Ortiz. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Markus Vinicius Ortiz. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -776,5 +499,17 @@
             window.addEventListener('scroll', checkScroll);
         });
     </script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Antes do fechamento do body -->
+    <script src="./js/animations.js"></script>
+    <script src="./js/theme-switcher.js"></script>
+    <script type="module" src="./js/header3d.js"></script>
+    <script src="./js/skills-chart.js"></script>
+    <script src="./js/skills-carousel.js"></script>
+    <script src="./js/mobile-ux.js"></script>
+    <script type="module" src="./js/portfolio.js"></script>
 </body>
 </html>
