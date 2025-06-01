@@ -46,14 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
         backgroundColor: gradient,
         borderColor: borderGradient,
         borderWidth: 3,
-        pointBackgroundColor: accentColor,
-        pointBorderColor: '#ffffff',
+        pointBackgroundColor: isDarkMode ? accentColor : '#ffffff',
+        pointBorderColor: isDarkMode ? '#ffffff' : accentColor,
         pointBorderWidth: 3,
-        pointHoverBackgroundColor: '#ffffff',
-        pointHoverBorderColor: accentColor,
+        pointHoverBackgroundColor: isDarkMode ? '#ffffff' : accentColor,
+        pointHoverBorderColor: isDarkMode ? accentColor : '#ffffff',
         pointHoverBorderWidth: 4,
-        pointRadius: isMobile ? 7 : 10,
-        pointHoverRadius: isMobile ? 10 : 15,
+        pointRadius: isMobile ? 5 : 10,
+        pointHoverRadius: isMobile ? 7 : 15,
         tension: 0.1,
         fill: true
       }]
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             borderCapStyle: 'round'
           },
           point: {
-            hoverRadius: isMobile ? 10 : 14,
+            hoverRadius: isMobile ? 7 : 14,
             hitRadius: 15
           }
         },
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 size: isMobile ? 12 : 15,
                 weight: '600'
               },
-              padding: isMobile ? 35 : 45,
+              padding: isMobile ? 45 : 45,
               callback: function(value) {
                 // Quebrar labels longos em múltiplas linhas
                 if (value.length > 8) {
@@ -220,14 +220,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const newIsDarkMode = !document.body.classList.contains('light-theme');
       const newGridColor = newIsDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)';
       const newLabelColor = newIsDarkMode ? '#ffffff' : '#1f2937';
-      const newAccentColor = newIsDarkMode ? '#3b82f6' : '#2563eb';
-      const newSecondaryColor = newIsDarkMode ? '#8b5cf6' : '#7c3aed';
+      const newAccentColor = '#ef4444'; // Vermelho
+      const newSecondaryColor = '#f97316'; // Laranja
       
       // Recriar gradientes com as novas cores
       const newGradient = canvas.createRadialGradient(0, 0, 0, 0, 0, 200);
-      newGradient.addColorStop(0, newIsDarkMode ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.2)');
-      newGradient.addColorStop(0.5, newIsDarkMode ? 'rgba(139, 92, 246, 0.2)' : 'rgba(124, 58, 237, 0.15)');
-      newGradient.addColorStop(1, newIsDarkMode ? 'rgba(59, 130, 246, 0.1)' : 'rgba(37, 99, 235, 0.05)');
+      newGradient.addColorStop(0, newIsDarkMode ? 'rgba(239, 68, 68, 0.3)' : 'rgba(220, 38, 38, 0.2)');
+      newGradient.addColorStop(0.5, newIsDarkMode ? 'rgba(249, 115, 22, 0.2)' : 'rgba(234, 88, 12, 0.15)');
+      newGradient.addColorStop(1, newIsDarkMode ? 'rgba(239, 68, 68, 0.1)' : 'rgba(220, 38, 38, 0.05)');
       
       const newBorderGradient = canvas.createRadialGradient(0, 0, 0, 0, 0, 200);
       newBorderGradient.addColorStop(0, newAccentColor);
@@ -236,8 +236,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Atualizar dataset
       skillsChart.data.datasets[0].backgroundColor = newGradient;
       skillsChart.data.datasets[0].borderColor = newBorderGradient;
-      skillsChart.data.datasets[0].pointBackgroundColor = newAccentColor;
-      skillsChart.data.datasets[0].pointHoverBorderColor = newAccentColor;
+      skillsChart.data.datasets[0].pointBackgroundColor = newIsDarkMode ? newAccentColor : '#ffffff';
+      skillsChart.data.datasets[0].pointBorderColor = newIsDarkMode ? '#ffffff' : newAccentColor;
+      skillsChart.data.datasets[0].pointHoverBackgroundColor = newIsDarkMode ? '#ffffff' : newAccentColor;
+      skillsChart.data.datasets[0].pointHoverBorderColor = newIsDarkMode ? newAccentColor : '#ffffff';
       
       // Atualizar cores do gráfico
       skillsChart.options.scales.r.angleLines.color = newIsDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)';
